@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="tcp,">
 
 
 
@@ -79,16 +79,21 @@
 
 
 
-<meta name="description" content="在成为最厉害最厉害最厉害的道路上。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wq&#39;s blogs">
-<meta property="og:url" content="https://www.wangqian.ltd/archives/index.html">
+<meta name="description" content="建立连接协议（三次握手）">
+<meta name="keywords" content="tcp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP状态">
+<meta property="og:url" content="https://www.wangqian.ltd/2018/07/30/tcp_code/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="在成为最厉害最厉害最厉害的道路上。">
+<meta property="og:description" content="建立连接协议（三次握手）">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.wangqian.ltd/uploads/tcp_code/1_img.jpg">
+<meta property="og:image" content="https://www.wangqian.ltd/uploads/tcp_code/2_img.jpg">
+<meta property="og:updated_time" content="2019-07-31T11:44:49.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wq&#39;s blogs">
-<meta name="twitter:description" content="在成为最厉害最厉害最厉害的道路上。">
+<meta name="twitter:title" content="TCP状态">
+<meta name="twitter:description" content="建立连接协议（三次握手）">
+<meta name="twitter:image" content="https://www.wangqian.ltd/uploads/tcp_code/1_img.jpg">
 
 
 
@@ -118,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/archives/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2018/07/30/tcp_code/">
 
 
 
 
 
-  <title>归档 | wq's blogs</title>
+  <title>TCP状态 | wq's blogs</title>
   
 
 
@@ -143,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,112 +242,190 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 2 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/07/30/tcp_code/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKuN1C5QkB6ia1UEZ39fwI0HuH2iculf5NMbuWy6eH7OGP8UWEd6TUnpxFgpmUcANiaKsl5Sich8ytg7A/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/07/29/hello-world/" itemprop="url">
+        
+          <h1 class="post-title" itemprop="name headline">TCP状态</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-                <span itemprop="name">Hello World</span>
+                <span class="post-meta-item-text">发表于</span>
               
-            </a>
-        
-      </h2>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T12:46:21+08:00">
+                2018-07-30
+              </time>
+            
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-29T18:08:08+08:00" content="2019-07-29">
-          07-29
-        </time>
-      </div>
+            
 
-    </header>
-  </article>
+            
+          </span>
 
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/30/tcp_code/" itemprop="url">
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">TCP状态</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其它/" itemprop="url" rel="index">
+                    <span itemprop="name">其它</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-07-30T12:46:21+08:00" content="2018-07-30">
-          07-30
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
 
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h4 id="建立连接协议（三次握手）"><a href="#建立连接协议（三次握手）" class="headerlink" title="建立连接协议（三次握手）"></a>建立连接协议（三次握手）</h4><a id="more"></a>
+
+<ol>
+<li>客户端发送一个带SYN标志的TCP报文到服务器。这是三次握手过程中的报文1。</li>
+<li>服务器端回应客户端的，这是三次握手中的第2个报文，这个报文同时带ACK标志和SYN标志。因此它表示对刚才客户端SYN报文的回应；同时又标志SYN给客户端，询问客户端是否准备好进行数据通讯。</li>
+<li>客户必须再次回应服务段一个ACK报文，这是报文段3。<br><img src="/uploads/tcp_code/1_img.jpg" alt="1"></li>
+</ol>
+<h4 id="连接终止协议（四次释放）"><a href="#连接终止协议（四次释放）" class="headerlink" title="连接终止协议（四次释放）"></a>连接终止协议（四次释放）</h4><p>由于TCP连接是全双工的，因此每个方向都必须单独进行关闭。这原则是当一方完成它的数据发送任务后就能发送一个FIN来终止这个方向的连接。收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</p>
+<ol>
+<li>TCP客户端发送一个FIN，用来关闭客户到服务器的数据传送（报文段4）</li>
+<li>服务器收到这个FIN，它发回一个ACK，确认序号为收到的序号加1（报文段5）。和SYN一样，一个FIN将占用一个序号。</li>
+<li>服务器关闭客户端的连接，发送一个FIN给客户端（报文段6）。</li>
+<li>客户段发回ACK报文确认，并将确认序号设置为收到序号加1（报文段7）。</li>
+</ol>
+<hr>
+<p><strong>TIME_WAIT</strong>：通信双方建立TCP连接后，主动关闭连接的一方就会进入TIME_WAIT状态。客户端主动关闭连接时，会发送最后一个ack后，然后会进入TIME_WAIT状态，再停留2个MSL时间(后有MSL的解释)，进入CLOSED状态。</p>
+<p>下图是以客户端主动关闭连接为例，说明这一过程的。</p>
+<p><img src="/uploads/tcp_code/2_img.jpg" alt="1"></p>
+<p><strong>CLOSE_WAIT</strong>: 这种状态的含义其实是表示在等待关闭。怎么理解呢？当对方close一个SOCKET后发送FIN报文给自己，你系统毫无疑问地会回应一个ACK报文给对方，此时则进入到CLOSE_WAIT状态。接下来呢，实际上你真正需要考虑的事情是察看你是否还有数据发送给对方，如果没有的话，那么你也就可以 close这个SOCKET，发送FIN报文给对方，也即关闭连接。所以你在CLOSE_WAIT状态下，需要完成的事情是等待你去关闭连接。</p>
+<p><strong>MSL</strong>：就是maximum segment lifetime(最大分节生命期），这是一个IP数据包能在互联网上生存的最长时间，超过这个时间IP数据包将在网络中消失 。</p>
+<p><strong>TIME_WAIT</strong>状态维持时间：TIME_WAIT状态维持时间是两个MSL时间长度，也就是在1-4分钟。Windows操作系统就是4分钟。</p>
+<p>A 与 B 建立了正常连接后，从未相互发过数据，这个时候 B 突然机器重启，问 A 此时处于 TCP 什么状态？如何消除服务器程序中的这个状态？<br>答：A处于ESTABLISHED状态，B突然重启，A感知不到B的状态，可以通过心跳来探测对方状态。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tcp/" rel="tag"># tcp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/29/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -350,6 +433,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -370,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -449,6 +545,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立连接协议（三次握手）"><span class="nav-number">1.</span> <span class="nav-text">建立连接协议（三次握手）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接终止协议（四次释放）"><span class="nav-number">2.</span> <span class="nav-text">连接终止协议（四次释放）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -589,6 +701,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
