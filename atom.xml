@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-08-20T10:09:34.652Z</updated>
+  <updated>2019-08-22T08:09:03.531Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iPhone和iPad分辨率</title>
+    <link href="https://www.wangqian.ltd/2019/08/22/oc-develop-deviceMeasurement/"/>
+    <id>https://www.wangqian.ltd/2019/08/22/oc-develop-deviceMeasurement/</id>
+    <published>2019-08-22T08:02:28.000Z</published>
+    <updated>2019-08-22T08:09:03.531Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="iPhone和iPad分辨率"><a href="#iPhone和iPad分辨率" class="headerlink" title="iPhone和iPad分辨率"></a>iPhone和iPad分辨率</h3><p><img src="/.ltd//1.png" alt="分辨率"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;iPhone和iPad分辨率&quot;&gt;&lt;a href=&quot;#iPhone和iPad分辨率&quot; class=&quot;headerlink&quot; title=&quot;iPhone和iPad分辨率&quot;&gt;&lt;/a&gt;iPhone和iPad分辨率&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/.ltd//1.png
+      
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>TCP状态</title>
