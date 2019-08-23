@@ -349,6 +349,116 @@
           
             <h3 id="iPhone和iPad分辨率"><a href="#iPhone和iPad分辨率" class="headerlink" title="iPhone和iPad分辨率"></a>iPhone和iPad分辨率</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/1.png" title="分辨率">
 
+
+<h3 id="iPhone"><a href="#iPhone" class="headerlink" title="iPhone"></a>iPhone</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPhone.png" title="iPhone">
+
+<h3 id="iPad"><a href="#iPad" class="headerlink" title="iPad"></a>iPad</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPad.png" title="iPad">
+
+<h3 id="iPad-Air"><a href="#iPad-Air" class="headerlink" title="iPad Air"></a>iPad Air</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadAir.png" title="iPad Air">
+
+<h3 id="iPad-Pro"><a href="#iPad-Pro" class="headerlink" title="iPad Pro"></a>iPad Pro</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadPro.png" title="iPad Pro">
+
+<h3 id="iPad-Mini"><a href="#iPad-Mini" class="headerlink" title="iPad Mini"></a>iPad Mini</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadMini.png" title="iPad Mini">
+
+<h3 id="iTouch"><a href="#iTouch" class="headerlink" title="iTouch"></a>iTouch</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iTouch.png" title="iTouch">
+
+<h3 id="判断设备类型"><a href="#判断设备类型" class="headerlink" title="判断设备类型"></a>判断设备类型</h3><p>#import &lt;sys/utsname.h&gt;</p>
+<pre><code>+ (NSString *)deviceType
+{
+struct utsname systemInfo;
+uname(&amp;systemInfo);
+NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+
+//------------------------------iPhone---------------------------
+if ([platform isEqualToString:@&quot;iPhone1,1&quot;]) return @&quot;iPhone 2G&quot;;
+if ([platform isEqualToString:@&quot;iPhone1,2&quot;]) return @&quot;iPhone 3G&quot;;
+if ([platform isEqualToString:@&quot;iPhone2,1&quot;]) return @&quot;iPhone 3GS&quot;;
+if ([platform isEqualToString:@&quot;iPhone3,1&quot;] ||
+    [platform isEqualToString:@&quot;iPhone3,2&quot;] ||
+    [platform isEqualToString:@&quot;iPhone3,3&quot;]) return @&quot;iPhone 4&quot;;
+if ([platform isEqualToString:@&quot;iPhone4,1&quot;]) return @&quot;iPhone 4S&quot;;
+if ([platform isEqualToString:@&quot;iPhone5,1&quot;] ||
+    [platform isEqualToString:@&quot;iPhone5,2&quot;]) return @&quot;iPhone 5&quot;;
+if ([platform isEqualToString:@&quot;iPhone5,3&quot;] ||
+    [platform isEqualToString:@&quot;iPhone5,4&quot;]) return @&quot;iPhone 5c&quot;;
+if ([platform isEqualToString:@&quot;iPhone6,1&quot;] ||
+    [platform isEqualToString:@&quot;iPhone6,2&quot;]) return @&quot;iPhone 5s&quot;;
+if ([platform isEqualToString:@&quot;iPhone7,2&quot;]) return @&quot;iPhone 6&quot;;
+if ([platform isEqualToString:@&quot;iPhone7,1&quot;]) return @&quot;iPhone 6 Plus&quot;;
+if ([platform isEqualToString:@&quot;iPhone8,1&quot;]) return @&quot;iPhone 6s&quot;;
+if ([platform isEqualToString:@&quot;iPhone8,2&quot;]) return @&quot;iPhone 6s Plus&quot;;
+if ([platform isEqualToString:@&quot;iPhone8,4&quot;]) return @&quot;iPhone SE&quot;;
+if ([platform isEqualToString:@&quot;iPhone9,1&quot;] ||
+    [platform isEqualToString:@&quot;iPhone9,3&quot;]) return @&quot;iPhone 7&quot;;
+if ([platform isEqualToString:@&quot;iPhone9,2&quot;] ||
+    [platform isEqualToString:@&quot;iPhone9,4&quot;]) return @&quot;iPhone 7 Plus&quot;;
+if ([platform isEqualToString:@&quot;iPhone10,1&quot;] ||
+    [platform isEqualToString:@&quot;iPhone10,4&quot;]) return @&quot;iPhone 8&quot;;
+if ([platform isEqualToString:@&quot;iPhone10,2&quot;] ||
+    [platform isEqualToString:@&quot;iPhone10,5&quot;]) return @&quot;iPhone 8 Plus&quot;;
+if ([platform isEqualToString:@&quot;iPhone10,3&quot;] ||
+    [platform isEqualToString:@&quot;iPhone10,6&quot;]) return @&quot;iPhone X&quot;;
+if ([platform isEqualToString:@&quot;iPhone11,8&quot;]) return @&quot;iPhone XR&quot;;
+if ([platform isEqualToString:@&quot;iPhone11,2&quot;]) return @&quot;iPhone XS&quot;;
+if ([platform isEqualToString:@&quot;iPhone11,4&quot;] ||
+    [platform isEqualToString:@&quot;iPhone11,6&quot;]) return @&quot;iPhone XS Max&quot;;
+
+//------------------------------iPad--------------------------
+if ([platform isEqualToString:@&quot;iPad1,1&quot;]) return @&quot;iPad&quot;;
+if ([platform isEqualToString:@&quot;iPad2,1&quot;] ||
+    [platform isEqualToString:@&quot;iPad2,2&quot;] ||
+    [platform isEqualToString:@&quot;iPad2,3&quot;] ||
+    [platform isEqualToString:@&quot;iPad2,4&quot;]) return @&quot;iPad 2&quot;;
+if ([platform isEqualToString:@&quot;iPad3,1&quot;] ||
+    [platform isEqualToString:@&quot;iPad3,2&quot;] ||
+    [platform isEqualToString:@&quot;iPad3,3&quot;]) return @&quot;iPad 3&quot;;
+if ([platform isEqualToString:@&quot;iPad3,4&quot;] ||
+    [platform isEqualToString:@&quot;iPad3,5&quot;] ||
+    [platform isEqualToString:@&quot;iPad3,6&quot;]) return @&quot;iPad 4&quot;;
+if ([platform isEqualToString:@&quot;iPad4,1&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,2&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,3&quot;]) return @&quot;iPad Air&quot;;
+if ([platform isEqualToString:@&quot;iPad5,3&quot;] ||
+    [platform isEqualToString:@&quot;iPad5,4&quot;]) return @&quot;iPad Air 2&quot;;
+if ([platform isEqualToString:@&quot;iPad6,3&quot;] ||
+    [platform isEqualToString:@&quot;iPad6,4&quot;]) return @&quot;iPad Pro 9.7-inch&quot;;
+if ([platform isEqualToString:@&quot;iPad6,7&quot;] ||
+    [platform isEqualToString:@&quot;iPad6,8&quot;]) return @&quot;iPad Pro 12.9-inch&quot;;
+if ([platform isEqualToString:@&quot;iPad6,11&quot;] ||
+    [platform isEqualToString:@&quot;iPad6,12&quot;]) return @&quot;iPad 5&quot;;
+if ([platform isEqualToString:@&quot;iPad7,1&quot;] ||
+    [platform isEqualToString:@&quot;iPad7,2&quot;]) return @&quot;iPad Pro 12.9-inch 2&quot;;
+if ([platform isEqualToString:@&quot;iPad7,3&quot;] ||
+    [platform isEqualToString:@&quot;iPad7,4&quot;]) return @&quot;iPad Pro 10.5-inch&quot;;
+
+//------------------------------iPad Mini-----------------------
+if ([platform isEqualToString:@&quot;iPad2,5&quot;] ||
+    [platform isEqualToString:@&quot;iPad2,6&quot;] ||
+    [platform isEqualToString:@&quot;iPad2,7&quot;]) return @&quot;iPad mini&quot;;
+if ([platform isEqualToString:@&quot;iPad4,4&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,5&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,6&quot;]) return @&quot;iPad mini 2&quot;;
+if ([platform isEqualToString:@&quot;iPad4,7&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,8&quot;] ||
+    [platform isEqualToString:@&quot;iPad4,9&quot;]) return @&quot;iPad mini 3&quot;;
+if ([platform isEqualToString:@&quot;iPad5,1&quot;] ||
+    [platform isEqualToString:@&quot;iPad5,2&quot;]) return @&quot;iPad mini 4&quot;;
+
+//------------------------------iTouch------------------------
+if ([platform isEqualToString:@&quot;iPod1,1&quot;]) return @&quot;iTouch&quot;;
+if ([platform isEqualToString:@&quot;iPod2,1&quot;]) return @&quot;iTouch2&quot;;
+if ([platform isEqualToString:@&quot;iPod3,1&quot;]) return @&quot;iTouch3&quot;;
+if ([platform isEqualToString:@&quot;iPod4,1&quot;]) return @&quot;iTouch4&quot;;
+if ([platform isEqualToString:@&quot;iPod5,1&quot;]) return @&quot;iTouch5&quot;;
+if ([platform isEqualToString:@&quot;iPod7,1&quot;]) return @&quot;iTouch6&quot;;
+
+//------------------------------Samulitor-------------------------------------
+if ([platform isEqualToString:@&quot;i386&quot;] || 
+    [platform isEqualToString:@&quot;x86_64&quot;]) return @&quot;iPhone Simulator&quot;;
+
+return @&quot;Unknown&quot;;</code></pre><p>}</p>
+<p>btw：所有设备型号官网地址： <a href="https://www.theiphonewiki.com/wiki/Models" target="_blank" rel="noopener">https://www.theiphonewiki.com/wiki/Models</a></p>
+
           
         
       
