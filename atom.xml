@@ -67,11 +67,36 @@
   </entry>
   
   <entry>
+    <title>GitHub Desktop 链接 码云、GitLab使用方法</title>
+    <link href="https://www.wangqian.ltd/2018/09/01/GitHub-Desktop/"/>
+    <id>https://www.wangqian.ltd/2018/09/01/GitHub-Desktop/</id>
+    <published>2018-09-01T07:18:05.000Z</published>
+    <updated>2019-09-01T07:32:17.468Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1、添加SSH私钥并连接"><a href="#1、添加SSH私钥并连接" class="headerlink" title="1、添加SSH私钥并连接"></a>1、添加SSH私钥并连接</h3><pre><code>1、ssh-add /Users/wangqian/id_rsa     /Users/wangqian/id_rsa 为私钥的地址2、ssh -T git@gitlab.ttsing.com当出现 Welcome to GitLab, wq! 表示连接成功</code></pre><h3 id="2、如何从码云、GitLab导入到GitHubDeskTop桌面工具"><a href="#2、如何从码云、GitLab导入到GitHubDeskTop桌面工具" class="headerlink" title="2、如何从码云、GitLab导入到GitHubDeskTop桌面工具"></a>2、如何从码云、GitLab导入到GitHubDeskTop桌面工具</h3><p>1、先用命令行切换到本地的目录。<br>2、使用git clone 码云GIT地址 命令将项目克隆到本地。<br>3、在GitHub Desktop上添加(Add)本地项目(local path)。<br>4、在GitHub Desktop上尽情地提交、同步吧！</p><h3 id="3、如何将本地的项目上传到码码云、GitLab"><a href="#3、如何将本地的项目上传到码码云、GitLab" class="headerlink" title="3、如何将本地的项目上传到码码云、GitLab"></a>3、如何将本地的项目上传到码码云、GitLab</h3><p>1、选择本地目录，在GitHub Desktop上添加本地项目。<br>2、在码云GIT上新建项目。<br>3、 命令行使用git remote add origin GIT地址 将本地项目与码云GIT项目建立关系。<br>4、先使用命令git pull origin master 同步代码。<br>5、使用命令git push origin master 将本地代码推送到远程项目。<br>6、在GitHub Desktop上尽情地提交、同步吧！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1、添加SSH私钥并连接&quot;&gt;&lt;a href=&quot;#1、添加SSH私钥并连接&quot; class=&quot;headerlink&quot; title=&quot;1、添加SSH私钥并连接&quot;&gt;&lt;/a&gt;1、添加SSH私钥并连接&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1、ssh-add /Users/wangq
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="https://www.wangqian.ltd/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="GitHub" scheme="https://www.wangqian.ltd/tags/GitHub/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Markdown基本语法</title>
     <link href="https://www.wangqian.ltd/2018/08/29/MarkdownGrammar/"/>
     <id>https://www.wangqian.ltd/2018/08/29/MarkdownGrammar/</id>
     <published>2018-08-29T06:05:32.000Z</published>
-    <updated>2019-08-29T09:24:25.462Z</updated>
+    <updated>2019-08-29T09:26:10.651Z</updated>
     
     <content type="html"><![CDATA[<p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p><h3 id="1、标题"><a href="#1、标题" class="headerlink" title="1、标题"></a>1、标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。<br>示例：</p><pre><code># 这是一级标题## 这是二级标题### 这是三级标题#### 这是四级标题##### 这是五级标题###### 这是六级标题</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/1.png"><h3 id="2、字体"><a href="#2、字体" class="headerlink" title="2、字体"></a>2、字体</h3><p>加粗 - 要加粗的文字左右分别用两个*号包起来</p><p>斜体 - 要倾斜的文字左右分别用一个*号包起来</p><p>斜体加粗 - 要倾斜和加粗的文字左右分别用三个*号包起来</p><p>删除线 - 要加删除线的文字左右分别用两个~~号包起来</p><p>修改字体颜色 - <font color="#FF0000"> 字体改成红色了 </font><br>示例：</p><pre><code>**这是加粗的文字***这是倾斜的文字****这是斜体加粗的文字***~~这是加删除线的文字~~&lt;font color=红色&gt; 字体改成红色了 &lt;/font&gt;</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/2.png"><h3 id="3、引用"><a href="#3、引用" class="headerlink" title="3、引用"></a>3、引用</h3><p>在需要引用的文字前加&gt;即可。<br>示例：</p><pre><code>&gt;这里是引用的内容&gt;&gt;这里是引用的内容</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/3.png" title="This is an image"><h3 id="4、分割线"><a href="#4、分割线" class="headerlink" title="4、分割线"></a>4、分割线</h3><p>三个或者三个以上 - 或者 * 都可以<br>示例：</p><pre><code>-------*******</code></pre><h3 id="5、图片"><a href="#5、图片" class="headerlink" title="5、图片"></a>5、图片</h3><pre><code>![图片alt](图片地址 &apos;&apos;图片title&apos;&apos;)图片alt就是显示在图片下面的文字，相当于对图片内容的解释。图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</code></pre><h3 id="6、超链接"><a href="#6、超链接" class="headerlink" title="6、超链接"></a>6、超链接</h3><pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)title可加可不加</code></pre><p>示例：</p><pre><code>[百度](http://baidu.com)</code></pre><p>效果如下：</p><p><a href="http://baidu.com" target="_blank" rel="noopener">百度</a></p><h3 id="7、表格"><a href="#7、表格" class="headerlink" title="7、表格"></a>7、表格</h3><p>语法如下：</p><pre><code>表头|表头|表头---|:--:|---:内容|内容|内容内容|内容|内容第二行分割表头和内容。- 有一个就行，为了对齐，多加了几个文字默认居左-两边加：表示文字居中-右边加：表示文字居右注：原生的语法两边都要用 | 包起来。此处省略</code></pre><p>示例：</p><pre><code>姓名|技能|排行--|:--:|--:刘备|哭|大哥关羽|打|二哥张飞|骂|三弟</code></pre><p>效果如下：</p><table><thead><tr><th>姓名</th><th align="center">技能</th><th align="right">排行</th></tr></thead><tbody><tr><td>刘备</td><td align="center">哭</td><td align="right">大哥</td></tr><tr><td>关羽</td><td align="center">打</td><td align="right">二哥</td></tr><tr><td>张飞</td><td align="center">骂</td><td align="right">三弟</td></tr></tbody></table>]]></content>
     
