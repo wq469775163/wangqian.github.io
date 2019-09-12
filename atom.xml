@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-08-28T06:18:27.787Z</updated>
+  <updated>2019-09-12T06:43:41.726Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GOROOT,GOPATH,GOBIN,project目录</title>
+    <link href="https://www.wangqian.ltd/2019/09/12/GolangBasis-day02/"/>
+    <id>https://www.wangqian.ltd/2019/09/12/GolangBasis-day02/</id>
+    <published>2019-09-12T06:03:28.000Z</published>
+    <updated>2019-09-12T06:43:41.726Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们接下来一个一个来看关于Go语言中的三个目录的详细解释<br>先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同)</p><pre><code>wangqiandeMacBook-Pro:~ wangqian$ go envGOARCH=&quot;amd64&quot;GOBIN=&quot;/Users/wangqian/Desktop/Golang_Study/bin&quot;GOCACHE=&quot;/Users/wangqian/Library/Caches/go-build&quot;GOEXE=&quot;&quot;GOFLAGS=&quot;&quot;GOHOSTARCH=&quot;amd64&quot;GOHOSTOS=&quot;darwin&quot;GOOS=&quot;darwin&quot;GOPATH=&quot;/Users/wangqian/Desktop/Golang_Study&quot;GOPROXY=&quot;&quot;GORACE=&quot;&quot;GOROOT=&quot;/usr/local/go&quot;GOTMPDIR=&quot;&quot;GOTOOLDIR=&quot;/usr/local/go/pkg/tool/darwin_amd64&quot;GCCGO=&quot;gccgo&quot;CC=&quot;clang&quot;CXX=&quot;clang++&quot;CGO_ENABLED=&quot;1&quot;GOMOD=&quot;&quot;CGO_CFLAGS=&quot;-g -O2&quot;CGO_CPPFLAGS=&quot;&quot;CGO_CXXFLAGS=&quot;-g -O2&quot;CGO_FFLAGS=&quot;-g -O2&quot;CGO_LDFLAGS=&quot;-g -O2&quot;PKG_CONFIG=&quot;pkg-config&quot;GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/zm/zrfg_g0x7f970pp27h3whjd00000gn/T/go-build047476467=/tmp/go-build -gno-record-gcc-switches -fno-common&quot;</code></pre><h3 id="GOROOT"><a href="#GOROOT" class="headerlink" title="GOROOT"></a>GOROOT</h3><p>其实就是golang 的安装路径<br>当你安装好golang之后其实这个就已经有了,Mac环境下默认为/usr/local/go</p><h3 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h3><p>go命令依赖的一个重要环境变量：$GOPATH</p><p>其实可以把这个目录理解为工作目录，我个人定义的目录是：<br>GOPATH=”/Users/wangqian/Desktop/Golang_Study”<br>当然这个目录是需要添加到环境变量中的</p><p>其中Golang_Study文件下包括</p><pre><code>-- bin 箱子、容器，golang编译可执行文件存放路径-- src 标准要求代码（Standard Requirement Code）源码路径。按照golang默认约定，go run，go install等命令的当前工作路径（即在此路径下执行上述命令-- pkg package包装 golang编译包时，生成的.a文件存放路径</code></pre><h3 id="GOBIN"><a href="#GOBIN" class="headerlink" title="GOBIN"></a>GOBIN</h3><p>首先先看一下我的目录结构</p><img src="/2019/09/12/GolangBasis-day02/1.png">]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我们接下来一个一个来看关于Go语言中的三个目录的详细解释&lt;br&gt;先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wangqiandeMacBook-Pro:~ wangqian$ go env
+GOARCH=&amp;
+      
+    
+    </summary>
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo无法显示本地图片</title>
@@ -71,9 +98,9 @@
     <link href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/"/>
     <id>https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/</id>
     <published>2018-09-02T03:20:42.000Z</published>
-    <updated>2019-09-02T03:46:16.944Z</updated>
+    <updated>2019-09-12T06:11:50.565Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>1、国内镜像下载地址：<a href="https://golang.google.cn/dl/" target="_blank" rel="noopener">https://golang.google.cn/dl/</a><br>2、终端中输入go ，若出现下图即安装成功。</p><pre><code>Go is a tool for managing Go source code.Usage:go &lt;command&gt; [arguments]The commands are:bug         start a bug reportbuild       compile packages and dependenciesclean       remove object files and cached filesdoc         show documentation for package or symbolenv         print Go environment informationfix         update packages to use new APIsfmt         gofmt (reformat) package sourcesgenerate    generate Go files by processing sourceget         download and install packages and dependenciesinstall     compile and install packages and dependencieslist        list packages or modulesmod         module maintenancerun         compile and run Go programtest        test packagestool        run specified go toolversion     print Go versionvet         report likely mistakes in packagesUse &quot;go help &lt;command&gt;&quot; for more information about a command.Additional help topics:buildmode   build modesc           calling between Go and Ccache       build and test cachingenvironment environment variablesfiletype    file typesgo.mod      the go.mod filegopath      GOPATH environment variablegopath-get  legacy GOPATH go getgoproxy     module proxy protocolimportpath  import path syntaxmodules     modules, module versions, and moremodule-get  module-aware go getpackages    package lists and patternstestflag    testing flagstestfunc    testing functionsUse &quot;go help &lt;topic&gt;&quot; for more information about that topic.</code></pre><p>3、开发环境构建：通过go version查看版本，在1.8版本前必须设置这个环境变量。1.8版本后（含1.8）如果没有设置使用默认值</p><pre><code>在 Unix 上默认为 $HOME/go 在 Windows 上默认为 %USERPROFILE%/go 在 Mac 上 GOPATH 可以通过修改 ~/.bash_profile 来设置</code></pre><h3 id="2、测试是否安装成功"><a href="#2、测试是否安装成功" class="headerlink" title="2、测试是否安装成功"></a>2、测试是否安装成功</h3><p>新建源码文件hello.go</p><pre><code>cd /Users/wangqian/Desktop/Golang_Study/src  //打开源文件存放的位置vim hello.go   // 编辑hello.go文件</code></pre><p>编码hello.go文件：</p><pre><code>package mainimport &quot;fmt&quot;func main(){fmt.Printf(&quot;hello world\n&quot;)}</code></pre><p>退出保存后直接运行</p><pre><code>go run hello.gowangqiandeMacBook-Pro:src wangqian$ go run hello.gohello world</code></pre><p>现在我们把源文件编译成二进制文件，并且运行当前二进制文件</p><pre><code>go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ ./hi.outhello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>1、国内镜像下载地址：<a href="https://golang.google.cn/dl/" target="_blank" rel="noopener">https://golang.google.cn/dl/</a><br>2、终端中输入go ，若出现下图即安装成功。</p><pre><code>Go is a tool for managing Go source code.Usage:go &lt;command&gt; [arguments]The commands are:bug         start a bug reportbuild       compile packages and dependenciesclean       remove object files and cached filesdoc         show documentation for package or symbolenv         print Go environment informationfix         update packages to use new APIsfmt         gofmt (reformat) package sourcesgenerate    generate Go files by processing sourceget         download and install packages and dependenciesinstall     compile and install packages and dependencieslist        list packages or modulesmod         module maintenancerun         compile and run Go programtest        test packagestool        run specified go toolversion     print Go versionvet         report likely mistakes in packagesUse &quot;go help &lt;command&gt;&quot; for more information about a command.Additional help topics:buildmode   build modesc           calling between Go and Ccache       build and test cachingenvironment environment variablesfiletype    file typesgo.mod      the go.mod filegopath      GOPATH environment variablegopath-get  legacy GOPATH go getgoproxy     module proxy protocolimportpath  import path syntaxmodules     modules, module versions, and moremodule-get  module-aware go getpackages    package lists and patternstestflag    testing flagstestfunc    testing functionsUse &quot;go help &lt;topic&gt;&quot; for more information about that topic.</code></pre><p>3、开发环境构建：通过go version查看版本，在1.8版本前必须设置这个环境变量。1.8版本后（含1.8）如果没有设置使用默认值</p><pre><code>在 Unix 上默认为 $HOME/go 在 Windows 上默认为 %USERPROFILE%/go 在 Mac 上 GOPATH 可以通过修改 ~/.bash_profile 来设置</code></pre><h3 id="2、测试是否安装成功"><a href="#2、测试是否安装成功" class="headerlink" title="2、测试是否安装成功"></a>2、测试是否安装成功</h3><p>新建源码文件hello.go</p><pre><code>cd /Users/wangqian/Desktop/Golang_Study/src  //打开源文件存放的位置vim hello.go   // 编辑hello.go文件</code></pre><p>编码hello.go文件：</p><pre><code>package mainimport &quot;fmt&quot;func main(){fmt.Printf(&quot;hello world\n&quot;)}</code></pre><p>退出保存后直接运行</p><pre><code>go run hello.gowangqiandeMacBook-Pro:src wangqian$ go run hello.gohello world</code></pre><p>现在我们把源文件编译成二进制文件，并且运行当前二进制文件</p><pre><code>go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ ./hi.outhello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p><h3 id="3、设置GOPATH环境变量"><a href="#3、设置GOPATH环境变量" class="headerlink" title="3、设置GOPATH环境变量"></a>3、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p><pre><code>export GOPATH=$HOME/go</code></pre><p>保存然后退出你的编辑器。然后在终端中运行下面命令</p><pre><code>source ~/.bash_profile</code></pre><p>提示：$HOME是每个电脑下的用户主目录，每个电脑可能不同，可以在终端运行 echo $HOME 获取<br>GOROOT 默认是在 /usr/local/go，如果没有，可以在 bash_profile 文件中设置。<br>export GOROOT=/usr/local/go<br>然后保存并退出编辑器，运行 source ~/.bash_profile 命令即可</p>]]></content>
     
     <summary type="html">
     
