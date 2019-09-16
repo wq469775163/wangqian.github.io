@@ -1210,7 +1210,17 @@ hello world</code></pre><p>现在我们把源文件编译成二进制文件，�
 wangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.out
 wangqiandeMacBook-Pro:src wangqian$ ./hi.out
 hello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p>
-<h3 id="3、设置GOPATH环境变量"><a href="#3、设置GOPATH环境变量" class="headerlink" title="3、设置GOPATH环境变量"></a>3、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p>
+<h3 id="3、go常用命令介绍"><a href="#3、go常用命令介绍" class="headerlink" title="3、go常用命令介绍"></a>3、go常用命令介绍</h3><p>go run 路径需要完整的路径到src<br>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run src/day_01/hello_world.go</p>
+<p>hello world</p>
+<p>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run day_01/hello_world.go</p>
+<p>stat day_01/hello_world.go: no such file or directory</p>
+<p>go build 编译的时候制定固定的包就行了，不需要带上src<br>go build day_01  go build 是在当前文件路径生成可执行文件，<br>go build -o bin/hello2 day_01  指定在bin路径下生成名称hello2的可执行文件</p>
+<p>go install day_01  生成可执行文件在bin目录下<br>前提是go环境bin路径修改过 GOBIN=”/Users/wangqian/Desktop/Golang_Study/bin”</p>
+<p>go fmt day_01  格式化代码  直接包名路径就行</p>
+<p>在VSCode中目录结构如下图所示：</p>
+<img src="/2018/09/02/GolangBasis-day01/2.png">
+
+<h3 id="4、设置GOPATH环境变量"><a href="#4、设置GOPATH环境变量" class="headerlink" title="4、设置GOPATH环境变量"></a>4、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p>
 <pre><code>export GOPATH=$HOME/go</code></pre><p>保存然后退出你的编辑器。然后在终端中运行下面命令</p>
 <pre><code>source ~/.bash_profile</code></pre><p>提示：$HOME是每个电脑下的用户主目录，每个电脑可能不同，可以在终端运行 echo $HOME 获取<br>GOROOT 默认是在 /usr/local/go，如果没有，可以在 bash_profile 文件中设置。<br>export GOROOT=/usr/local/go<br>然后保存并退出编辑器，运行 source ~/.bash_profile 命令即可</p>
 
