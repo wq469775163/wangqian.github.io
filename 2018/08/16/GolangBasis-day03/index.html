@@ -81,21 +81,18 @@
 
 
 
-<meta name="description" content="1、下载1、国内镜像下载地址：https://golang.google.cn/dl/2、终端中输入go ，若出现下图即安装成功。 Go is a tool for managing Go source code.  Usage:  go &amp;lt;command&amp;gt; [arguments]  The commands are:  bug         start a bug report b">
+<meta name="description" content="1、标识符和关键字标识符 ：Go语言的代码中的几乎所有东西都有一个名称或标识符_本身就是一个特殊的标识符，被称为空白标识符.它可以像其他标识符那样用于变量的声明或赋值（任何类型都可以赋值给它），但任何赋给这个标识符的值都将被抛弃 关键字：Go中25个关键字或保留字。（var、if之类）和其它语言一样，关键字不能够作标识符使用。 预定义标识符：Go 语言还有 36 个预定义标识符，其中包含了基本类型">
 <meta name="keywords" content="Golang基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac环境下安装、配置golang">
-<meta property="og:url" content="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/index.html">
+<meta property="og:title" content="标识符、关键字、变量">
+<meta property="og:url" content="https://www.wangqian.ltd/2018/08/16/GolangBasis-day03/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="1、下载1、国内镜像下载地址：https://golang.google.cn/dl/2、终端中输入go ，若出现下图即安装成功。 Go is a tool for managing Go source code.  Usage:  go &amp;lt;command&amp;gt; [arguments]  The commands are:  bug         start a bug report b">
+<meta property="og:description" content="1、标识符和关键字标识符 ：Go语言的代码中的几乎所有东西都有一个名称或标识符_本身就是一个特殊的标识符，被称为空白标识符.它可以像其他标识符那样用于变量的声明或赋值（任何类型都可以赋值给它），但任何赋给这个标识符的值都将被抛弃 关键字：Go中25个关键字或保留字。（var、if之类）和其它语言一样，关键字不能够作标识符使用。 预定义标识符：Go 语言还有 36 个预定义标识符，其中包含了基本类型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/1.png">
-<meta property="og:image" content="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/2.png">
-<meta property="og:updated_time" content="2019-09-16T06:25:45.500Z">
+<meta property="og:updated_time" content="2019-09-19T11:48:45.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac环境下安装、配置golang">
-<meta name="twitter:description" content="1、下载1、国内镜像下载地址：https://golang.google.cn/dl/2、终端中输入go ，若出现下图即安装成功。 Go is a tool for managing Go source code.  Usage:  go &amp;lt;command&amp;gt; [arguments]  The commands are:  bug         start a bug report b">
-<meta name="twitter:image" content="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/1.png">
+<meta name="twitter:title" content="标识符、关键字、变量">
+<meta name="twitter:description" content="1、标识符和关键字标识符 ：Go语言的代码中的几乎所有东西都有一个名称或标识符_本身就是一个特殊的标识符，被称为空白标识符.它可以像其他标识符那样用于变量的声明或赋值（任何类型都可以赋值给它），但任何赋给这个标识符的值都将被抛弃 关键字：Go中25个关键字或保留字。（var、if之类）和其它语言一样，关键字不能够作标识符使用。 预定义标识符：Go 语言还有 36 个预定义标识符，其中包含了基本类型">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2018/08/16/GolangBasis-day03/">
 
 
 
 
 
-  <title>Mac环境下安装、配置golang | wq's blogs</title>
+  <title>标识符、关键字、变量 | wq's blogs</title>
   
 
 
@@ -258,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/08/16/GolangBasis-day03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王乾">
@@ -275,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mac环境下安装、配置golang</h1>
+          <h1 class="post-title" itemprop="name headline">标识符、关键字、变量</h1>
         
 
         <div class="post-meta">
@@ -287,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T11:20:42+08:00">
-                2018-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T15:39:25+08:00">
+                2018-08-16
               </time>
             
 
@@ -347,87 +344,38 @@
       
 
       
-        <h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>1、国内镜像下载地址：<a href="https://golang.google.cn/dl/" target="_blank" rel="noopener">https://golang.google.cn/dl/</a><br>2、终端中输入go ，若出现下图即安装成功。</p>
-<pre><code>Go is a tool for managing Go source code.
-
-Usage:
-
-go &lt;command&gt; [arguments]
-
-The commands are:
-
-bug         start a bug report
-build       compile packages and dependencies
-clean       remove object files and cached files
-doc         show documentation for package or symbol
-env         print Go environment information
-fix         update packages to use new APIs
-fmt         gofmt (reformat) package sources
-generate    generate Go files by processing source
-get         download and install packages and dependencies
-install     compile and install packages and dependencies
-list        list packages or modules
-mod         module maintenance
-run         compile and run Go program
-test        test packages
-tool        run specified go tool
-version     print Go version
-vet         report likely mistakes in packages
-
-Use &quot;go help &lt;command&gt;&quot; for more information about a command.
-
-Additional help topics:
-
-buildmode   build modes
-c           calling between Go and C
-cache       build and test caching
-environment environment variables
-filetype    file types
-go.mod      the go.mod file
-gopath      GOPATH environment variable
-gopath-get  legacy GOPATH go get
-goproxy     module proxy protocol
-importpath  import path syntax
-modules     modules, module versions, and more
-module-get  module-aware go get
-packages    package lists and patterns
-testflag    testing flags
-testfunc    testing functions
-
-Use &quot;go help &lt;topic&gt;&quot; for more information about that topic.</code></pre><p>3、开发环境构建：通过go version查看版本，在1.8版本前必须设置这个环境变量。1.8版本后（含1.8）如果没有设置使用默认值</p>
-<pre><code>在 Unix 上默认为 $HOME/go 
-在 Windows 上默认为 %USERPROFILE%/go 
-在 Mac 上 GOPATH 可以通过修改 ~/.bash_profile 来设置</code></pre><h3 id="2、测试是否安装成功"><a href="#2、测试是否安装成功" class="headerlink" title="2、测试是否安装成功"></a>2、测试是否安装成功</h3><p>新建源码文件hello.go</p>
-<pre><code>cd /Users/wangqian/Desktop/Golang_Study/src  //打开源文件存放的位置
-vim hello.go   // 编辑hello.go文件</code></pre><p>编码hello.go文件：</p>
-<pre><code>package main
-import &quot;fmt&quot;
-
-func main(){
-fmt.Printf(&quot;hello world\n&quot;)
-}</code></pre><p>退出保存后直接运行</p>
-<pre><code>go run hello.go
-
-wangqiandeMacBook-Pro:src wangqian$ go run hello.go
-hello world</code></pre><p>现在我们把源文件编译成二进制文件，并且运行当前二进制文件</p>
-<pre><code>go build -ldflags &quot;-s -w&quot; -o hi.out
-
-wangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.out
-wangqiandeMacBook-Pro:src wangqian$ ./hi.out
-hello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p>
-<h3 id="3、go常用命令介绍"><a href="#3、go常用命令介绍" class="headerlink" title="3、go常用命令介绍"></a>3、go常用命令介绍</h3><p>go run 路径需要完整的路径到src<br>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run src/day_01/hello_world.go</p>
-<p>hello world</p>
-<p>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run day_01/hello_world.go</p>
-<p>stat day_01/hello_world.go: no such file or directory</p>
-<p>go build 编译的时候制定固定的包就行了，不需要带上src<br>go build day_01  go build 是在当前文件路径生成可执行文件，<br>go build -o bin/hello2 day_01  指定在bin路径下生成名称hello2的可执行文件</p>
-<p>go install day_01  生成可执行文件在bin目录下<br>前提是go环境bin路径修改过 GOBIN=”/Users/wangqian/Desktop/Golang_Study/bin”</p>
-<p>go fmt day_01  格式化代码  直接包名路径就行</p>
-<p>在VSCode中目录结构如下图所示：</p>
-<img src="/2018/09/02/GolangBasis-day01/2.png">
-
-<h3 id="4、设置GOPATH环境变量"><a href="#4、设置GOPATH环境变量" class="headerlink" title="4、设置GOPATH环境变量"></a>4、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p>
-<pre><code>export GOPATH=$HOME/go</code></pre><p>保存然后退出你的编辑器。然后在终端中运行下面命令</p>
-<pre><code>source ~/.bash_profile</code></pre><p>提示：$HOME是每个电脑下的用户主目录，每个电脑可能不同，可以在终端运行 echo $HOME 获取<br>GOROOT 默认是在 /usr/local/go，如果没有，可以在 bash_profile 文件中设置。<br>export GOROOT=/usr/local/go<br>然后保存并退出编辑器，运行 source ~/.bash_profile 命令即可</p>
+        <h3 id="1、标识符和关键字"><a href="#1、标识符和关键字" class="headerlink" title="1、标识符和关键字"></a>1、标识符和关键字</h3><p>标识符 ：Go语言的代码中的几乎所有东西都有一个名称或标识符<br>_本身就是一个特殊的标识符，被称为空白标识符.它可以像其他标识符那样用于变量的声明或赋值（任何类型都可以赋值给它），但任何赋给这个标识符的值都将被抛弃</p>
+<p>关键字：Go中25个关键字或保留字。（var、if之类）<br>和其它语言一样，关键字不能够作标识符使用。</p>
+<p>预定义标识符：Go 语言还有 36 个预定义标识符，其中包含了基本类型的名称和一些基本的内置函数（int32之类）</p>
+<h3 id="2、变量的声明"><a href="#2、变量的声明" class="headerlink" title="2、变量的声明"></a>2、变量的声明</h3><p>Go语言是静态类型语言，在检查函数调用中编译器检查变量类型的正确性，因此变量必须有明确的类型。在数学概念中，变量表示没有固定值且可改变的数。但从计算机系统实现角度来看，变量是一段或多段用来存储数据的内存。</p>
+<p>当一个变量被声明之后，系统自动赋予它该类型的零值：int 为 0，float 为 0.0，bool 为 false，string 为空字符串，指针为 nil 等。所有的内存在 Go 中都是经过初始化的。（实例变量存在堆中，默认初始化值）</p>
+<p>数据类型：基本数据类型和引用数据类型</p>
+<p>GO语言基本数据类型：</p>
+<p>string</p>
+<p>bool</p>
+<p>int（32系统占4字节，64位系统占8字节）、int8（一个字节）、int16、int32 （rune）、int64  </p>
+<p>uint（32系统占4字节，64位系统占8字节）、uint8（byte）、uint16、uint32、uint64、uintptr</p>
+<p>float32、float64</p>
+<p>complex64、complex128     complex复杂的</p>
+<p>注意：<br>Golang在没声明具体整型时，默认为int;<br>Golang在没声明具体浮点型时，默认为float64</p>
+<h4 id="标准格式"><a href="#标准格式" class="headerlink" title="标准格式"></a>标准格式</h4><p>声明变量的一般形式是使用 var 关键字：var identifier type </p>
+<h4 id="批量格式"><a href="#批量格式" class="headerlink" title="批量格式"></a>批量格式</h4><pre><code>1    var (
+2        a int
+3        b string
+4        c []float32
+5        d func() bool
+6        e struct {
+7            x int
+8        }
+9    )</code></pre><h4 id="简短格式"><a href="#简短格式" class="headerlink" title="简短格式"></a>简短格式</h4><pre><code>1    func main() {
+2       x:=100
+3       a,s:=1, &quot;abc&quot;
+4    }</code></pre><p>需要注意的是，简短模式（short variable declaration）有以下限制：</p>
+<ul>
+<li>只能用在函数内部</li>
+<li>不能提供数据类型。</li>
+<li>定义变量，同时显式初始化。</li>
+</ul>
 
       
     </div>
@@ -458,8 +406,8 @@ hello world</code></pre><p>这样在当前文件夹中就会存在一个源文�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/01/GitHub-Desktop/" rel="next" title="GitHub Desktop 链接 码云、GitLab使用方法">
-                <i class="fa fa-chevron-left"></i> GitHub Desktop 链接 码云、GitLab使用方法
+              <a href="/2017/08/23/oc-develop-singleton/" rel="next" title="iOS单例模式，你真的写对了吗？">
+                <i class="fa fa-chevron-left"></i> iOS单例模式，你真的写对了吗？
               </a>
             
           </div>
@@ -468,8 +416,8 @@ hello world</code></pre><p>这样在当前文件夹中就会存在一个源文�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/10/Config-bash-profile/" rel="prev" title="Mac下配置.bash_profile（环境变量）">
-                Mac下配置.bash_profile（环境变量） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/29/MarkdownGrammar/" rel="prev" title="Markdown基本语法">
+                Markdown基本语法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -627,7 +575,7 @@ hello world</code></pre><p>这样在当前文件夹中就会存在一个源文�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、下载"><span class="nav-number">1.</span> <span class="nav-text">1、下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、测试是否安装成功"><span class="nav-number">2.</span> <span class="nav-text">2、测试是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、go常用命令介绍"><span class="nav-number">3.</span> <span class="nav-text">3、go常用命令介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、设置GOPATH环境变量"><span class="nav-number">4.</span> <span class="nav-text">4、设置GOPATH环境变量</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、标识符和关键字"><span class="nav-number">1.</span> <span class="nav-text">1、标识符和关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、变量的声明"><span class="nav-number">2.</span> <span class="nav-text">2、变量的声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准格式"><span class="nav-number">2.1.</span> <span class="nav-text">标准格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量格式"><span class="nav-number">2.2.</span> <span class="nav-text">批量格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简短格式"><span class="nav-number">2.3.</span> <span class="nav-text">简短格式</span></a></li></ol></li></ol></div>
             
 
           </div>

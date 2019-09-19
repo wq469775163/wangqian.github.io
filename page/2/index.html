@@ -84,7 +84,7 @@
 <meta name="description" content="在成为最厉害最厉害最厉害的道路上。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="wq&#39;s blogs">
-<meta property="og:url" content="https://www.wangqian.ltd/archives/index.html">
+<meta property="og:url" content="https://www.wangqian.ltd/page/2/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
 <meta property="og:description" content="在成为最厉害最厉害最厉害的道路上。">
 <meta property="og:locale" content="zh-Hans">
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/archives/">
+  <link rel="canonical" href="https://www.wangqian.ltd/page/2/">
 
 
 
 
 
-  <title>归档 | wq's blogs</title>
+  <title>wq's blogs</title>
   
 
 
@@ -145,7 +145,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,401 +239,279 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2017/08/21/oc-develop-cycle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/21/oc-develop-cycle/" itemprop="url">Objective-C中的各种遍历方式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T15:58:16+08:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
+            <h3 id="1、使用for循环"><a href="#1、使用for循环" class="headerlink" title="1、使用for循环"></a>1、使用for循环</h3><p>要遍历字典、数组或者是集合，for循环是最简单也用的比较多的方法，示例如下：　</p>
+<pre><code>// 数组
+NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+for (int i = 0; i &lt; array.count; i ++) {
+    NSString *obj = array[i];
+    NSLog(@&quot;%@&quot;,obj);
+}
 
-      
+//  字典
+NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};
+NSArray *dictKeysArray = [dictM allKeys];
+for (int i = 0; i&lt;dictKeysArray.count; i++) {
+    NSString *key = dictKeysArray[i];
+    NSString *obj = [dictM objectForKey:key];
+    NSLog(@&quot;%@:%@&quot;,key,obj);
+}
 
-        
-        
-        
+// 集合（无序、不能重复 其他和Array一样）
+NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];
+for (NSInteger index = 0; index &lt; set.allObjects.count; index ++) {
+    NSString *obj = set.allObjects[index];
+    NSLog(@&quot;%@&quot;,obj);
+}
 
-        
+// 反向遍历（以数组为例子）
+NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+for (NSInteger index = array2.count - 1; index &gt;= 0; index --) {
+    NSLog(@&quot;%@&quot;,array2[index]);
+}</code></pre><p>优点：简单</p>
+<p>缺点：由于字典和集合内部是无序的，导致我们在遍历字典和集合的时候需要借助一个新的“数组”作为中介来处理，多出了一部分开销。</p>
+<h3 id="2、使用for…in循环"><a href="#2、使用for…in循环" class="headerlink" title="2、使用for…in循环"></a>2、使用for…in循环</h3><p>在Objective-C 2.0 中增加了for …In 形式的快速遍历。此种遍历方式语法简洁，速度飞快。示例如下：</p>
+<pre><code>// 数组
+NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+for (id obj in array) {
+    NSLog(@&quot;%@&quot;,obj);
+}
+
+//  字典
+NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};
+for (id obj in dictM) {
+    NSLog(@&quot;%@&quot;,dictM[obj]);
+}
+
+// 集合（无序、不能重复 其他和Array一样）
+NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];
+for (id obj in set) {
+    NSLog(@&quot;%@&quot;,obj);
+}
+
+// 反向遍历（以数组为例子）
+NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+for (id obj in [array2 reverseObjectEnumerator]) {
+    NSLog(@&quot;%@&quot;,obj);
+}</code></pre><p>优点：1）语法简洁；2）效率最高；</p>
+<p>缺点：无法获得当前遍历操作所针对的下标。</p>
+<h3 id="3、使用NSEnumerator遍历"><a href="#3、使用NSEnumerator遍历" class="headerlink" title="3、使用NSEnumerator遍历"></a>3、使用NSEnumerator遍历</h3><p>NSEnumerator的使用和基本的for循环类似，不过代码量要大一些。示例如下：</p>
+<pre><code>// 数组
+NSArray *arrayM = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+NSEnumerator *arrayEnumerator = [arrayM objectEnumerator];
+NSString *obj;
+while ((obj = [arrayEnumerator nextObject]) != nil) {
+    NSLog(@&quot;%@&quot;,obj);
+}
+
+// 字典
+NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};
+NSEnumerator *dictEnumerator = [dictM keyEnumerator];
+NSString *key;
+while ((key = [dictEnumerator nextObject]) != nil) {
+    NSString *obj = dictM[key];
+    NSLog(@&quot;%@&quot;,obj);
+}
+
+// 集合（无序、不能重复 其他和Array一样）
+NSSet * setM = [[NSSet alloc] initWithObjects:@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;,@&quot;four&quot;, nil];
+NSEnumerator *setEnumerator = [setM objectEnumerator];
+NSString *setObj;
+while ((setObj = [setEnumerator nextObject]) != nil) {
+    NSLog(@&quot;%@&quot;,setObj);
+}
+
+
+// 反向遍历（以数组为例子）
+NSArray *arrayM2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+NSEnumerator *arrayEnumerator2 = [arrayM2 reverseObjectEnumerator];
+NSString *obj2;
+while ((obj2 = [arrayEnumerator2 nextObject]) != nil) {
+    NSLog(@&quot;%@&quot;,obj2);
+}</code></pre><p>优点：对于不同的数据类型，遍历的语法相似；内部可以简单的通过reverseObjectEnumerator设置进行反向遍历。</p>
+<p>缺点：代码量稍大。</p>
+<h3 id="4、基于Block的遍历方式"><a href="#4、基于Block的遍历方式" class="headerlink" title="4、基于Block的遍历方式"></a>4、基于Block的遍历方式</h3><p>基于Block的方式来进行遍历是最新引入的方法。它提供了遍历数组|字典等类型数据的最佳实践。示例如下：</p>
+<pre><code>// 数组
+NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+[array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSLog(@&quot;%lu--%@&quot;,(unsigned long)idx,obj);
+}];
+
+//  字典
+NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};
+[dictM enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    NSLog(@&quot;%@:%@&quot;,key,obj);
+}];
+
+// 集合（无序、不能重复 其他和Array一样）
+NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];
+[set enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
+    NSLog(@&quot;%@&quot;,obj);
+}];
+
+// 反向遍历（以数组为例子）
+NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];
+[array2 enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSLog(@&quot;%zd--%@&quot;,idx,obj);
+}];</code></pre><p>优点：1）遍历时可以直接从block中获得需要的所有信息，包括下标、值等。特别相对于字典而言，不需要做多余的编码即可同时获得key和value的值。</p>
+<p>　　　2）能够直接修改block中key或者obj的类型为真实类型，可以省去类型转换的工作。</p>
+<p>　　　3）可以通过NSEnumerationConcurrent枚举值开启并发迭代功能。</p>
+<p>说明：基于Block的遍历方式在实现反向遍历的时候也非常简单，使用enumerateObjectsWithOptions方法，传递NSEnumerationReverse作为参数即可，在处理遍历操作的时候推荐基于Block的遍历方式。</p>
+<h3 id="5、使GCD中的dispatch-apply函数"><a href="#5、使GCD中的dispatch-apply函数" class="headerlink" title="5、使GCD中的dispatch_apply函数"></a>5、使GCD中的dispatch_apply函数</h3><p>使用GCD中的dispatch_apply函数也能实现字典、数组等的遍历，该函数比较适合处理耗时较长、迭代次数较多的情况。示例如下：</p>
+<pre><code>NSArray *array3 = @[@&quot;10&quot;,@&quot;11&quot;,@&quot;12&quot;,@&quot;13&quot;,@&quot;14&quot;];
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_apply(array3.count, queue, ^(size_t index) {
+    NSLog(@&quot;%@--%@&quot;,array3[index],[NSThread currentThread]);
+});</code></pre><p>优点：开启多条线程并发处理遍历任务，执行效率高。</p>
+<p>缺点：1）对于字典和集合的处理需借助数组；2）无法实现反向遍历。</p>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/19/GolangBasis-day04/" itemprop="url">
-              
-                <span itemprop="name">GolangBasis-day04</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-19T19:36:16+08:00" content="2019-09-19">
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/28/hexoDisplayImage/" itemprop="url">
-              
-                <span itemprop="name">Hexo无法显示本地图片</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-28T13:46:56+08:00" content="2019-08-28">
-          08-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/08/22/oc-develop-deviceMeasurement/" itemprop="url">
-              
-                <span itemprop="name">iPhone和iPad分辨率</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-22T16:02:28+08:00" content="2019-08-22">
-          08-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/12/GolangBasis-day02/" itemprop="url">
-              
-                <span itemprop="name">GOROOT,GOPATH,GOBIN,project目录</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-12T14:03:28+08:00" content="2018-09-12">
-          09-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/10/Config-bash-profile/" itemprop="url">
-              
-                <span itemprop="name">Mac下配置.bash_profile（环境变量）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-10T14:54:20+08:00" content="2018-09-10">
-          09-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/02/GolangBasis-day01/" itemprop="url">
-              
-                <span itemprop="name">Mac环境下安装、配置golang</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-02T11:20:42+08:00" content="2018-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/01/GitHub-Desktop/" itemprop="url">
-              
-                <span itemprop="name">GitHub Desktop 链接 码云、GitLab使用方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-01T15:18:05+08:00" content="2018-09-01">
-          09-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/29/MarkdownGrammar/" itemprop="url">
-              
-                <span itemprop="name">Markdown基本语法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-29T14:05:32+08:00" content="2018-08-29">
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/16/GolangBasis-day03/" itemprop="url">
-              
-                <span itemprop="name">标识符、关键字、变量</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-16T15:39:25+08:00" content="2018-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/23/oc-develop-singleton/" itemprop="url">
-              
-                <span itemprop="name">iOS单例模式，你真的写对了吗？</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-08-23T19:00:17+08:00" content="2017-08-23">
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
-
 
 
 
