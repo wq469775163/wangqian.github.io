@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-09-19T11:36:17.002Z</updated>
+  <updated>2019-10-14T10:10:39.683Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -17,16 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GolangBasis-day04</title>
+    <title>Go语言基本语法</title>
     <link href="https://www.wangqian.ltd/2019/09/19/GolangBasis-day04/"/>
     <id>https://www.wangqian.ltd/2019/09/19/GolangBasis-day04/</id>
     <published>2019-09-19T11:36:16.000Z</published>
-    <updated>2019-09-19T11:36:17.002Z</updated>
+    <updated>2019-10-14T10:10:39.683Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Go语言类型的本质"><a href="#Go语言类型的本质" class="headerlink" title="Go语言类型的本质"></a>Go语言类型的本质</h3><h4 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h4><p>整型类型、浮点类型、字符串类型和布尔类型，对这些值进行增加或者删除的时候，会创建一个新值。当把这些类型的值传递给方法或者函数时，应该传递一个对应值的副本。</p><h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><h4 id="结构类型"><a href="#结构类型" class="headerlink" title="结构类型"></a>结构类型</h4><p>疑问点：<br>1、这些值进行增加或者删除的时候，会创建一个新值<br>2、引用类型、结构类型没看</p><a id="more"></a><h3 id="bool类型知识点"><a href="#bool类型知识点" class="headerlink" title="bool类型知识点"></a>bool类型知识点</h3><p>1、Go语言对于值之间的比较有非常严格的限制，只有两个类型相同的值才可以进行比较，否则其中一个值的类型必须在被转换为和另外一个值的类型相同之后才可以进行比较。</p><p>2、&amp;&amp; 的优先级比 || 高（&amp;&amp; 对应逻辑乘法，|| 对应逻辑加法，乘法比加法优先级要高）</p><p>3、布尔值并不会隐式转换为数字值 0 或 1，反之亦然。</p><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>基本理解：字符串是字符的一个序列，字符是UTF-8编码格式。当字符为 ASCII 码表上的字符时则占用 1 个字节，其它字符根据需要占用 2-4 个字节。</p><h4 id="工具用法"><a href="#工具用法" class="headerlink" title="工具用法"></a>工具用法</h4><p>1、ASCII字符串长度使用len()函数。一个中文三个长度。</p><p>Unicode字符串长度使用utf8.RuneCountlnString()函数。</p><pre><code>var asciiStr string = &quot;abcd&quot;fmt.Println(len(asciiStr))fmt.Println(utf8.RuneCountInString(asciiStr))chineseStr := &quot;王乾&quot;fmt.Printf(&quot;%d\n&quot;, len(chineseStr))fmt.Println(utf8.RuneCountInString(chineseStr))输出结果：    wangqiandeMacBook-Pro:Golang_Study wangqian$ go run src/day_02/Bool类型/bool.go    4    4    6    2</code></pre><p>2、字符串检索</p><pre><code>strings.Index：正向搜索子字符串。strings.LastIndex：反向搜索子字符串。str1[0] 字符对应的ASCII编码表str1[0:] 以位置为0字符开始到结尾字符组成的字符串</code></pre><p>3、字符串遍历的两种方法</p><pre><code>ASCII 字符串遍历直接使用下标。Unicode字符串遍历用for rangeprintf(&quot;%c&quot;,a)；输出单个字符。printf(&quot;%d&quot;,a)；输出十进制整数。printf(&quot;%f&quot;,a)；输出十进制浮点数.printf(&quot;%s&quot;,a)；输出字符串。</code></pre><p>4、GO语言修改字符串</p><pre><code>Go语言中的字符串和其他高级语言（Java、C#）一样，默认是不可变的修改字符串时，可以将字符串转换为 []byte 进行修改。（是重新生成了一个字符串）</code></pre><p>5、字符串拼接方式</p><pre><code> 1、+拼接 2、使用字节缓冲拼接字符串 bytes.Buffer var stringBuffer bytes.Bufferstring1 := &quot;hhhh&quot;string2 := &quot;王乾&quot;stringBuffer.WriteString(string1)stringBuffer.WriteString(string2)fmt.Println(stringBuffer.String())</code></pre>]]></content>
     
     <summary type="html">
     
+      &lt;h3 id=&quot;Go语言类型的本质&quot;&gt;&lt;a href=&quot;#Go语言类型的本质&quot; class=&quot;headerlink&quot; title=&quot;Go语言类型的本质&quot;&gt;&lt;/a&gt;Go语言类型的本质&lt;/h3&gt;&lt;h4 id=&quot;内置类型&quot;&gt;&lt;a href=&quot;#内置类型&quot; class=&quot;headerlink&quot; title=&quot;内置类型&quot;&gt;&lt;/a&gt;内置类型&lt;/h4&gt;&lt;p&gt;整型类型、浮点类型、字符串类型和布尔类型，对这些值进行增加或者删除的时候，会创建一个新值。当把这些类型的值传递给方法或者函数时，应该传递一个对应值的副本。&lt;/p&gt;
+&lt;h4 id=&quot;引用类型&quot;&gt;&lt;a href=&quot;#引用类型&quot; class=&quot;headerlink&quot; title=&quot;引用类型&quot;&gt;&lt;/a&gt;引用类型&lt;/h4&gt;&lt;h4 id=&quot;结构类型&quot;&gt;&lt;a href=&quot;#结构类型&quot; class=&quot;headerlink&quot; title=&quot;结构类型&quot;&gt;&lt;/a&gt;结构类型&lt;/h4&gt;&lt;p&gt;疑问点：&lt;br&gt;1、这些值进行增加或者删除的时候，会创建一个新值&lt;br&gt;2、引用类型、结构类型没看&lt;/p&gt;
+    
     </summary>
     
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
