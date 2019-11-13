@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="wq&#39;s blogs">
 <meta property="og:description" content="从指针获取指针指向的值名词：指针类型、指针地址、&amp;amp;、* //  ptr-pointer (既指针)得缩写  var house string = &amp;quot;777&amp;quot;  ptr := &amp;amp;house // &amp;amp;取地址操作符,对字符串取地址，将指针保存到变量ptr中  fmt.Printf(&amp;quot;ptr type: %T\n&amp;quot;, ptr)    // 指">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-13T09:41:06.747Z">
+<meta property="og:updated_time" content="2019-11-13T09:44:28.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Golang语言指针">
 <meta name="twitter:description" content="从指针获取指针指向的值名词：指针类型、指针地址、&amp;amp;、* //  ptr-pointer (既指针)得缩写  var house string = &amp;quot;777&amp;quot;  ptr := &amp;amp;house // &amp;amp;取地址操作符,对字符串取地址，将指针保存到变量ptr中  fmt.Printf(&amp;quot;ptr type: %T\n&amp;quot;, ptr)    // 指">
@@ -356,7 +356,9 @@ fmt.Printf(&quot;ptr address: %p\n&quot;, ptr) // 指针地址，指向对象在
 
 value := *ptr                         // *取值操作符，对指针进行取值操作
 fmt.Printf(&quot;value type: %T\n&quot;, value) // 打印为string
-fmt.Printf(&quot;value address: %s\n&quot;, value)</code></pre><h3 id="使用指针修改值"><a href="#使用指针修改值" class="headerlink" title="使用指针修改值"></a>使用指针修改值</h3><h3 id="使用指针变量获取命令行的输入信息"><a href="#使用指针变量获取命令行的输入信息" class="headerlink" title="使用指针变量获取命令行的输入信息"></a>使用指针变量获取命令行的输入信息</h3><pre><code>var mode = flag.String(&quot;mode&quot;, &quot;&quot;, &quot;process mode&quot;)
+fmt.Printf(&quot;value address: %s\n&quot;, value)</code></pre><a id="more"></a>
+
+<h3 id="使用指针修改值"><a href="#使用指针修改值" class="headerlink" title="使用指针修改值"></a>使用指针修改值</h3><h3 id="使用指针变量获取命令行的输入信息"><a href="#使用指针变量获取命令行的输入信息" class="headerlink" title="使用指针变量获取命令行的输入信息"></a>使用指针变量获取命令行的输入信息</h3><pre><code>var mode = flag.String(&quot;mode&quot;, &quot;&quot;, &quot;process mode&quot;)
 flag.Parse()
 fmt.Println(*mode)
 

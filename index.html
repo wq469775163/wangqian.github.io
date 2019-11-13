@@ -346,8 +346,7 @@
 
       
         
-          
-            <h3 id="从指针获取指针指向的值"><a href="#从指针获取指针指向的值" class="headerlink" title="从指针获取指针指向的值"></a>从指针获取指针指向的值</h3><p>名词：指针类型、指针地址、&amp;、*</p>
+          <h3 id="从指针获取指针指向的值"><a href="#从指针获取指针指向的值" class="headerlink" title="从指针获取指针指向的值"></a>从指针获取指针指向的值</h3><p>名词：指针类型、指针地址、&amp;、*</p>
 <pre><code>//  ptr-pointer (既指针)得缩写
 
 var house string = &quot;777&quot;
@@ -359,16 +358,14 @@ fmt.Printf(&quot;ptr address: %p\n&quot;, ptr) // 指针地址，指向对象在
 
 value := *ptr                         // *取值操作符，对指针进行取值操作
 fmt.Printf(&quot;value type: %T\n&quot;, value) // 打印为string
-fmt.Printf(&quot;value address: %s\n&quot;, value)</code></pre><h3 id="使用指针修改值"><a href="#使用指针修改值" class="headerlink" title="使用指针修改值"></a>使用指针修改值</h3><h3 id="使用指针变量获取命令行的输入信息"><a href="#使用指针变量获取命令行的输入信息" class="headerlink" title="使用指针变量获取命令行的输入信息"></a>使用指针变量获取命令行的输入信息</h3><pre><code>var mode = flag.String(&quot;mode&quot;, &quot;&quot;, &quot;process mode&quot;)
-flag.Parse()
-fmt.Println(*mode)
-
-go run src/day_02/Bool类型/bool.go --mode=7</code></pre><h3 id="创建指针的另一种方法-new-函数"><a href="#创建指针的另一种方法-new-函数" class="headerlink" title="创建指针的另一种方法 new()函数"></a>创建指针的另一种方法 new()函数</h3><pre><code>//用法如下：
-str2 := new(string)
-*str2 = &quot;加油加油&quot;
-fmt.Printf(&quot;%s\n&quot;, *str2) // 加油加油</code></pre><p>参考地址：<a href="http://c.biancheng.net/view/21.html" target="_blank" rel="noopener">http://c.biancheng.net/view/21.html</a></p>
-
-          
+fmt.Printf(&quot;value address: %s\n&quot;, value)</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/13/GolangBasis-day05/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
