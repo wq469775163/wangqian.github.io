@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-10-14T10:10:39.683Z</updated>
+  <updated>2019-11-13T09:41:06.747Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang语言指针</title>
+    <link href="https://www.wangqian.ltd/2019/11/13/GolangBasis-day05/"/>
+    <id>https://www.wangqian.ltd/2019/11/13/GolangBasis-day05/</id>
+    <published>2019-11-13T09:33:37.000Z</published>
+    <updated>2019-11-13T09:41:06.747Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="从指针获取指针指向的值"><a href="#从指针获取指针指向的值" class="headerlink" title="从指针获取指针指向的值"></a>从指针获取指针指向的值</h3><p>名词：指针类型、指针地址、&amp;、*</p><pre><code>//  ptr-pointer (既指针)得缩写var house string = &quot;777&quot;ptr := &amp;house // &amp;取地址操作符,对字符串取地址，将指针保存到变量ptr中fmt.Printf(&quot;ptr type: %T\n&quot;, ptr)    // 指针类型为 *stringfmt.Printf(&quot;ptr address: %p\n&quot;, ptr) // 指针地址，指向对象在内存中存放的位置。每次运行都会发生变化。value := *ptr                         // *取值操作符，对指针进行取值操作fmt.Printf(&quot;value type: %T\n&quot;, value) // 打印为stringfmt.Printf(&quot;value address: %s\n&quot;, value)</code></pre><h3 id="使用指针修改值"><a href="#使用指针修改值" class="headerlink" title="使用指针修改值"></a>使用指针修改值</h3><h3 id="使用指针变量获取命令行的输入信息"><a href="#使用指针变量获取命令行的输入信息" class="headerlink" title="使用指针变量获取命令行的输入信息"></a>使用指针变量获取命令行的输入信息</h3><pre><code>var mode = flag.String(&quot;mode&quot;, &quot;&quot;, &quot;process mode&quot;)flag.Parse()fmt.Println(*mode)go run src/day_02/Bool类型/bool.go --mode=7</code></pre><h3 id="创建指针的另一种方法-new-函数"><a href="#创建指针的另一种方法-new-函数" class="headerlink" title="创建指针的另一种方法 new()函数"></a>创建指针的另一种方法 new()函数</h3><pre><code>//用法如下：str2 := new(string)*str2 = &quot;加油加油&quot;fmt.Printf(&quot;%s\n&quot;, *str2) // 加油加油</code></pre><p>参考地址：<a href="http://c.biancheng.net/view/21.html" target="_blank" rel="noopener">http://c.biancheng.net/view/21.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;从指针获取指针指向的值&quot;&gt;&lt;a href=&quot;#从指针获取指针指向的值&quot; class=&quot;headerlink&quot; title=&quot;从指针获取指针指向的值&quot;&gt;&lt;/a&gt;从指针获取指针指向的值&lt;/h3&gt;&lt;p&gt;名词：指针类型、指针地址、&amp;amp;、*&lt;/p&gt;
+&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Go语言基本语法</title>
