@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-11-13T09:44:28.838Z</updated>
+  <updated>2019-11-14T09:49:28.445Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang疑问</title>
+    <link href="https://www.wangqian.ltd/2019/11/14/ColangQuestion/"/>
+    <id>https://www.wangqian.ltd/2019/11/14/ColangQuestion/</id>
+    <published>2019-11-14T09:47:43.000Z</published>
+    <updated>2019-11-14T09:49:28.445Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>1、变量逃逸分析，不太明白变量是在栈、堆上？</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;1、变量逃逸分析，不太明白变量是在栈、堆上？&lt;/code&gt;&lt;/pre&gt;
+      
+    
+    </summary>
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang语言指针</title>

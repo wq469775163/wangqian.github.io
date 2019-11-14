@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="我们接下来一个一个来看关于Go语言中的三个目录的详细解释先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同) wangqiandeMacBook-Pro:~ wangqian$ go env GOARCH=&amp;quot;amd64&amp;quot; GOBIN=&amp;quot;/Users/wangqian/Desktop/Golang_Study/bin&amp;quot; GOCACH">
+<meta name="description" content="1、变量逃逸分析，不太明白变量是在栈、堆上？">
 <meta name="keywords" content="Golang基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GOROOT,GOPATH,GOBIN,project目录">
-<meta property="og:url" content="https://www.wangqian.ltd/2018/09/12/GolangBasis-day02/index.html">
+<meta property="og:title" content="Golang疑问">
+<meta property="og:url" content="https://www.wangqian.ltd/2019/11/14/ColangQuestion/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="我们接下来一个一个来看关于Go语言中的三个目录的详细解释先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同) wangqiandeMacBook-Pro:~ wangqian$ go env GOARCH=&amp;quot;amd64&amp;quot; GOBIN=&amp;quot;/Users/wangqian/Desktop/Golang_Study/bin&amp;quot; GOCACH">
+<meta property="og:description" content="1、变量逃逸分析，不太明白变量是在栈、堆上？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.wangqian.ltd/2018/09/12/GolangBasis-day02/1.png">
-<meta property="og:updated_time" content="2019-09-12T06:50:20.438Z">
+<meta property="og:updated_time" content="2019-11-14T09:49:28.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GOROOT,GOPATH,GOBIN,project目录">
-<meta name="twitter:description" content="我们接下来一个一个来看关于Go语言中的三个目录的详细解释先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同) wangqiandeMacBook-Pro:~ wangqian$ go env GOARCH=&amp;quot;amd64&amp;quot; GOBIN=&amp;quot;/Users/wangqian/Desktop/Golang_Study/bin&amp;quot; GOCACH">
-<meta name="twitter:image" content="https://www.wangqian.ltd/2018/09/12/GolangBasis-day02/1.png">
+<meta name="twitter:title" content="Golang疑问">
+<meta name="twitter:description" content="1、变量逃逸分析，不太明白变量是在栈、堆上？">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/2018/09/12/GolangBasis-day02/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2019/11/14/ColangQuestion/">
 
 
 
 
 
-  <title>GOROOT,GOPATH,GOBIN,project目录 | wq's blogs</title>
+  <title>Golang疑问 | wq's blogs</title>
   
 
 
@@ -257,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/12/GolangBasis-day02/">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2019/11/14/ColangQuestion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王乾">
@@ -274,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GOROOT,GOPATH,GOBIN,project目录</h1>
+          <h1 class="post-title" itemprop="name headline">Golang疑问</h1>
         
 
         <div class="post-meta">
@@ -286,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T14:03:28+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T17:47:43+08:00">
+                2019-11-14
               </time>
             
 
@@ -346,42 +344,7 @@
       
 
       
-        <p>我们接下来一个一个来看关于Go语言中的三个目录的详细解释<br>先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同)</p>
-<pre><code>wangqiandeMacBook-Pro:~ wangqian$ go env
-GOARCH=&quot;amd64&quot;
-GOBIN=&quot;/Users/wangqian/Desktop/Golang_Study/bin&quot;
-GOCACHE=&quot;/Users/wangqian/Library/Caches/go-build&quot;
-GOEXE=&quot;&quot;
-GOFLAGS=&quot;&quot;
-GOHOSTARCH=&quot;amd64&quot;
-GOHOSTOS=&quot;darwin&quot;
-GOOS=&quot;darwin&quot;
-GOPATH=&quot;/Users/wangqian/Desktop/Golang_Study&quot;
-GOPROXY=&quot;&quot;
-GORACE=&quot;&quot;
-GOROOT=&quot;/usr/local/go&quot;
-GOTMPDIR=&quot;&quot;
-GOTOOLDIR=&quot;/usr/local/go/pkg/tool/darwin_amd64&quot;
-GCCGO=&quot;gccgo&quot;
-CC=&quot;clang&quot;
-CXX=&quot;clang++&quot;
-CGO_ENABLED=&quot;1&quot;
-GOMOD=&quot;&quot;
-CGO_CFLAGS=&quot;-g -O2&quot;
-CGO_CPPFLAGS=&quot;&quot;
-CGO_CXXFLAGS=&quot;-g -O2&quot;
-CGO_FFLAGS=&quot;-g -O2&quot;
-CGO_LDFLAGS=&quot;-g -O2&quot;
-PKG_CONFIG=&quot;pkg-config&quot;
-GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/zm/zrfg_g0x7f970pp27h3whjd00000gn/T/go-build047476467=/tmp/go-build -gno-record-gcc-switches -fno-common&quot;</code></pre><h3 id="GOROOT"><a href="#GOROOT" class="headerlink" title="GOROOT"></a>GOROOT</h3><p>其实就是golang 的安装路径<br>当你安装好golang之后其实这个就已经有了,Mac环境下默认为/usr/local/go</p>
-<h3 id="GOPATH"><a href="#GOPATH" class="headerlink" title="GOPATH"></a>GOPATH</h3><p>go命令依赖的一个重要环境变量：$GOPATH</p>
-<p>其实可以把这个目录理解为工作目录，我个人定义的目录是：<br>GOPATH=”/Users/wangqian/Desktop/Golang_Study”<br>当然这个目录是需要添加到环境变量中的</p>
-<p>其中Golang_Study文件下包括</p>
-<pre><code>-- bin 箱子、容器，golang编译可执行文件存放路径
--- src 标准要求代码（Standard Requirement Code）源码路径。按照golang默认约定，go run，go install等命令的当前工作路径（即在此路径下执行上述命令
--- pkg package包装 golang编译包时，生成的.a文件存放路径</code></pre><h3 id="GOBIN"><a href="#GOBIN" class="headerlink" title="GOBIN"></a>GOBIN</h3><p>首先先看一下我的目录结构</p>
-<img src="/2018/09/12/GolangBasis-day02/1.png">
-
+        <pre><code>1、变量逃逸分析，不太明白变量是在栈、堆上？</code></pre>
       
     </div>
     
@@ -411,8 +374,8 @@ GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/10/Config-bash-profile/" rel="next" title="Mac下配置.bash_profile（环境变量）">
-                <i class="fa fa-chevron-left"></i> Mac下配置.bash_profile（环境变量）
+              <a href="/2019/11/13/GolangBasis-day05/" rel="next" title="Golang语言指针">
+                <i class="fa fa-chevron-left"></i> Golang语言指针
               </a>
             
           </div>
@@ -420,10 +383,6 @@ GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/22/oc-develop-deviceMeasurement/" rel="prev" title="iPhone和iPad分辨率">
-                iPhone和iPad分辨率 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,17 +434,8 @@ GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -570,22 +520,6 @@ GOGCCFLAGS=&quot;-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GOROOT"><span class="nav-number">1.</span> <span class="nav-text">GOROOT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GOPATH"><span class="nav-number">2.</span> <span class="nav-text">GOPATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GOBIN"><span class="nav-number">3.</span> <span class="nav-text">GOBIN</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
