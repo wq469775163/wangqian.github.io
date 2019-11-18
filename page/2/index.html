@@ -254,6 +254,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/08/29/MarkdownGrammar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/MarkdownGrammar/" itemprop="url">Markdown基本语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T14:05:32+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<h3 id="1、标题"><a href="#1、标题" class="headerlink" title="1、标题"></a>1、标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。<br>示例：</p>
+<pre><code># 这是一级标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题</code></pre><p>效果如下：</p>
+<img src="/2018/08/29/MarkdownGrammar/1.png">
+
+<h3 id="2、字体"><a href="#2、字体" class="headerlink" title="2、字体"></a>2、字体</h3><p>加粗 - 要加粗的文字左右分别用两个*号包起来</p>
+<p>斜体 - 要倾斜的文字左右分别用一个*号包起来</p>
+<p>斜体加粗 - 要倾斜和加粗的文字左右分别用三个*号包起来</p>
+<p>删除线 - 要加删除线的文字左右分别用两个~~号包起来</p>
+<p>修改字体颜色 - <font color="#FF0000"> 字体改成红色了 </font><br>示例：</p>
+<pre><code>**这是加粗的文字**
+*这是倾斜的文字*
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+&lt;font color=红色&gt; 字体改成红色了 &lt;/font&gt;</code></pre><p>效果如下：</p>
+<img src="/2018/08/29/MarkdownGrammar/2.png">
+
+<h3 id="3、引用"><a href="#3、引用" class="headerlink" title="3、引用"></a>3、引用</h3><p>在需要引用的文字前加&gt;即可。<br>示例：</p>
+<pre><code>&gt;这里是引用的内容
+&gt;&gt;这里是引用的内容</code></pre><p>效果如下：</p>
+<img src="/2018/08/29/MarkdownGrammar/3.png" title="This is an image">
+
+<h3 id="4、分割线"><a href="#4、分割线" class="headerlink" title="4、分割线"></a>4、分割线</h3><p>三个或者三个以上 - 或者 * 都可以<br>示例：</p>
+<pre><code>---
+----
+***
+****</code></pre><h3 id="5、图片"><a href="#5、图片" class="headerlink" title="5、图片"></a>5、图片</h3><pre><code>![图片alt](图片地址 &apos;&apos;图片title&apos;&apos;)
+
+图片alt就是显示在图片下面的文字，相当于对图片内容的解释。
+图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</code></pre><h3 id="6、超链接"><a href="#6、超链接" class="headerlink" title="6、超链接"></a>6、超链接</h3><pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)
+title可加可不加</code></pre><p>示例：</p>
+<pre><code>[百度](http://baidu.com)</code></pre><p>效果如下：</p>
+<p><a href="http://baidu.com" target="_blank" rel="noopener">百度</a></p>
+<h3 id="7、表格"><a href="#7、表格" class="headerlink" title="7、表格"></a>7、表格</h3><p>语法如下：</p>
+<pre><code>表头|表头|表头
+---|:--:|---:
+内容|内容|内容
+内容|内容|内容
+
+第二行分割表头和内容。
+- 有一个就行，为了对齐，多加了几个
+文字默认居左
+-两边加：表示文字居中
+-右边加：表示文字居右
+注：原生的语法两边都要用 | 包起来。此处省略</code></pre><p>示例：</p>
+<pre><code>姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟</code></pre><p>效果如下：</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th align="center">技能</th>
+<th align="right">排行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刘备</td>
+<td align="center">哭</td>
+<td align="right">大哥</td>
+</tr>
+<tr>
+<td>关羽</td>
+<td align="center">打</td>
+<td align="right">二哥</td>
+</tr>
+<tr>
+<td>张飞</td>
+<td align="center">骂</td>
+<td align="right">三弟</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/08/16/GolangBasis-day03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -947,7 +1167,7 @@ dispatch_apply(array3.count, queue, ^(size_t index) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -958,7 +1178,7 @@ dispatch_apply(array3.count, queue, ^(size_t index) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
