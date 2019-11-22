@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-11-18T10:04:05.291Z</updated>
+  <updated>2019-11-22T07:35:56.229Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go语言常量和模拟枚举</title>
+    <link href="https://www.wangqian.ltd/2019/11/22/GolangBasis-day06/"/>
+    <id>https://www.wangqian.ltd/2019/11/22/GolangBasis-day06/</id>
+    <published>2019-11-22T07:17:38.000Z</published>
+    <updated>2019-11-22T07:35:56.229Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1、常量和const关键字"><a href="#1、常量和const关键字" class="headerlink" title="1、常量和const关键字"></a>1、常量和const关键字</h3><p>特点：</p><ul><li>常量使用关键字 const 定义，用于存储不会改变的数据，常量是在编译时被创建的，即使定义在函数内部也是如此。</li><li>const定义类型只有基本数据类型。string bool 数字（整型、浮点型、复数）</li><li>常量的值必须是能够在编译时就能够确定的，可以在其赋值表达式中涉及计算过程，但是所有用于计算的值必须在编译期间就能获得。</li></ul><a id="more"></a><p>变量三种命名方式：</p><pre><code>var num1 int = 3var num2 = 4num3 := 5</code></pre><p>常量定义格式：和变量的声明语法类似。</p><pre><code>显式类型定义： const b string = &quot;abc&quot;隐式类型定义： const b = &quot;abc&quot;    </code></pre><h3 id="2、iota-常量生成器（枚举类型）"><a href="#2、iota-常量生成器（枚举类型）" class="headerlink" title="2、iota 常量生成器（枚举类型）"></a>2、iota 常量生成器（枚举类型）</h3><pre><code>type Weekday intconst (Sunday Weekday = iotaMondayTuesdayWednesdayThursdayFridaySaturday)</code></pre><h3 id="2-1-将枚举值转换为字符串"><a href="#2-1-将枚举值转换为字符串" class="headerlink" title="2.1 将枚举值转换为字符串"></a>2.1 将枚举值转换为字符串</h3><p>当这个类型需要显示为字符串时，Go语言会自动寻找String()方法并进行调用。</p><h3 id="3、无类型常量"><a href="#3、无类型常量" class="headerlink" title="3、无类型常量"></a>3、无类型常量</h3><p>编译器为这些没有明确的基础类型的数字常量提供比基础类型更高精度的算术运算，可以认为至少有 256bit 的运算精度。这里有六种未明确类型的常量类型，分别是无类型的布尔型、无类型的整数、无类型的字符、无类型的浮点数、无类型的复数、无类型的字符串。</p><pre><code>示例 2】math.Pi 无类型的浮点数常量，可以直接用于任意需要浮点数或复数的地方：    var x float32 = math.Pi    var y float64 = math.Pi    var z complex128 = math.Pi    如果 math.Pi 被确定为特定类型，比如 float64，那么结果精度可能会不一样，同时对于需要 float32 或 complex128 类型值的地方则需要一个明确的强制类型转换：    const Pi64 float64 = math.Pi    var x float32 = float32(Pi64) 强制类型转换方式语法和其他语言不同    var y float64 = Pi64    var z complex128 = complex128(Pi64)</code></pre><p>参考地址：<a href="http://c.biancheng.net/view/24.html" target="_blank" rel="noopener">http://c.biancheng.net/view/24.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1、常量和const关键字&quot;&gt;&lt;a href=&quot;#1、常量和const关键字&quot; class=&quot;headerlink&quot; title=&quot;1、常量和const关键字&quot;&gt;&lt;/a&gt;1、常量和const关键字&lt;/h3&gt;&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;常量使用关键字 const 定义，用于存储不会改变的数据，常量是在编译时被创建的，即使定义在函数内部也是如此。&lt;/li&gt;
+&lt;li&gt;const定义类型只有基本数据类型。string bool 数字（整型、浮点型、复数）&lt;/li&gt;
+&lt;li&gt;常量的值必须是能够在编译时就能够确定的，可以在其赋值表达式中涉及计算过程，但是所有用于计算的值必须在编译期间就能获得。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>mac下升级ruby环境版本</title>
