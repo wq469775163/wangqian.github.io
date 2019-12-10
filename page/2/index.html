@@ -254,6 +254,228 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/02/GolangBasis-day01/" itemprop="url">Mac环境下安装、配置golang</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T11:20:42+08:00">
+                2018-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Golang基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Golang基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>1、国内镜像下载地址：<a href="https://golang.google.cn/dl/" target="_blank" rel="noopener">https://golang.google.cn/dl/</a><br>2、终端中输入go ，若出现下图即安装成功。</p>
+<pre><code>Go is a tool for managing Go source code.
+
+Usage:
+
+go &lt;command&gt; [arguments]
+
+The commands are:
+
+bug         start a bug report
+build       compile packages and dependencies
+clean       remove object files and cached files
+doc         show documentation for package or symbol
+env         print Go environment information
+fix         update packages to use new APIs
+fmt         gofmt (reformat) package sources
+generate    generate Go files by processing source
+get         download and install packages and dependencies
+install     compile and install packages and dependencies
+list        list packages or modules
+mod         module maintenance
+run         compile and run Go program
+test        test packages
+tool        run specified go tool
+version     print Go version
+vet         report likely mistakes in packages
+
+Use &quot;go help &lt;command&gt;&quot; for more information about a command.
+
+Additional help topics:
+
+buildmode   build modes
+c           calling between Go and C
+cache       build and test caching
+environment environment variables
+filetype    file types
+go.mod      the go.mod file
+gopath      GOPATH environment variable
+gopath-get  legacy GOPATH go get
+goproxy     module proxy protocol
+importpath  import path syntax
+modules     modules, module versions, and more
+module-get  module-aware go get
+packages    package lists and patterns
+testflag    testing flags
+testfunc    testing functions
+
+Use &quot;go help &lt;topic&gt;&quot; for more information about that topic.</code></pre><p>3、开发环境构建：通过go version查看版本，在1.8版本前必须设置这个环境变量。1.8版本后（含1.8）如果没有设置使用默认值</p>
+<pre><code>在 Unix 上默认为 $HOME/go 
+在 Windows 上默认为 %USERPROFILE%/go 
+在 Mac 上 GOPATH 可以通过修改 ~/.bash_profile 来设置</code></pre><h3 id="2、测试是否安装成功"><a href="#2、测试是否安装成功" class="headerlink" title="2、测试是否安装成功"></a>2、测试是否安装成功</h3><p>新建源码文件hello.go</p>
+<pre><code>cd /Users/wangqian/Desktop/Golang_Study/src  //打开源文件存放的位置
+vim hello.go   // 编辑hello.go文件</code></pre><p>编码hello.go文件：</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main(){
+fmt.Printf(&quot;hello world\n&quot;)
+}</code></pre><p>退出保存后直接运行</p>
+<pre><code>go run hello.go
+
+wangqiandeMacBook-Pro:src wangqian$ go run hello.go
+hello world</code></pre><p>现在我们把源文件编译成二进制文件，并且运行当前二进制文件</p>
+<pre><code>go build -ldflags &quot;-s -w&quot; -o hi.out
+
+wangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.out
+wangqiandeMacBook-Pro:src wangqian$ ./hi.out
+hello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p>
+<h3 id="3、go常用命令介绍"><a href="#3、go常用命令介绍" class="headerlink" title="3、go常用命令介绍"></a>3、go常用命令介绍</h3><p>go run 路径需要完整的路径到src<br>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run src/day_01/hello_world.go</p>
+<p>hello world</p>
+<p>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run day_01/hello_world.go</p>
+<p>stat day_01/hello_world.go: no such file or directory</p>
+<p>go build 编译的时候制定固定的包就行了，不需要带上src<br>go build day_01  go build 是在当前文件路径生成可执行文件，<br>go build -o bin/hello2 day_01  指定在bin路径下生成名称hello2的可执行文件</p>
+<p>go install day_01  生成可执行文件在bin目录下<br>前提是go环境bin路径修改过 GOBIN=”/Users/wangqian/Desktop/Golang_Study/bin”</p>
+<p>go fmt day_01  格式化代码  直接包名路径就行</p>
+<p>在VSCode中目录结构如下图所示：</p>
+<img src="/2018/09/02/GolangBasis-day01/2.png">
+
+<h3 id="4、设置GOPATH环境变量"><a href="#4、设置GOPATH环境变量" class="headerlink" title="4、设置GOPATH环境变量"></a>4、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p>
+<pre><code>export GOPATH=$HOME/go</code></pre><p>保存然后退出你的编辑器。然后在终端中运行下面命令</p>
+<pre><code>source ~/.bash_profile</code></pre><p>提示：$HOME是每个电脑下的用户主目录，每个电脑可能不同，可以在终端运行 echo $HOME 获取<br>GOROOT 默认是在 /usr/local/go，如果没有，可以在 bash_profile 文件中设置。<br>export GOROOT=/usr/local/go<br>然后保存并退出编辑器，运行 source ~/.bash_profile 命令即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/01/GitHub-Desktop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,7 +1536,7 @@ dispatch_apply(array3.count, queue, ^(size_t index) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
