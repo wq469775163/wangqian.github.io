@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2019-12-10T04:32:13.429Z</updated>
+  <updated>2019-12-16T07:11:44.359Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何让自己的类用 copy 修饰符？</title>
+    <link href="https://www.wangqian.ltd/2019/12/16/oc-develop-nscopying/"/>
+    <id>https://www.wangqian.ltd/2019/12/16/oc-develop-nscopying/</id>
+    <published>2019-12-16T07:01:20.000Z</published>
+    <updated>2019-12-16T07:11:44.359Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="如何让自己的类用-copy-修饰符？"><a href="#如何让自己的类用-copy-修饰符？" class="headerlink" title="如何让自己的类用 copy 修饰符？"></a>如何让自己的类用 copy 修饰符？</h3><pre><code> NSArray *tempArray = @[@&quot;1&quot;,@&quot;2&quot;];NSMutableArray *mutableCopyMuArray = [tempArray mutableCopy];// tempArray==0x600002649ce  mutableCopyMuArray==0x600002649ce0// 深copy tempArray 和 mutableCopyMuArray是完全不同的变量NSLog(@&quot;tempArray==%p,mutableCopyMuArray==%p&quot;,tempArray,mutableCopyMuArray); WQUser *user = [[WQUser alloc] initWithName:@&quot;lbj&quot; age:35];/* WQUser自己新建的类不具备copy功能，程序会crash 声明NSCopying并且实现协议方法后，新建的类会具备copy功能 user==0x600002f7b400,copyUser==0x600002f7b3e0，copy出来完全不同的变量 */WQUser *copyUser = [user copy];NSLog(@&quot;user==%p,copyUser==%p&quot;,user,copyUser);</code></pre><a id="more"></a><p>若想令自己所写的对象具有拷贝功能，则需实现 NSCopying 协议。如果自定义的对象分为可变版本与不可变版本，那么就要同时实现 NSCopying 与 NSMutableCopying 协议。</p><p>具体步骤：</p><ol><li>需声明该类遵从 NSCopying 协议</li><li>实现 NSCopying 协议。该协议只有一个方法:</li></ol><pre><code>#import &quot;WQUser.h&quot;@interface WQUser ()&lt;NSCopying&gt;@property (nonatomic, readonly, copy) NSString *name;@property (nonatomic, readonly, assign) NSUInteger age;@property (nonatomic, readwrite, strong) NSMutableSet *friends;@end@implementation WQUser- (instancetype)initWithName:(NSString *)name                 age:(NSUInteger)age {if (self = [super init]) {_name = [name copy];_age = age;_friends = [[NSMutableSet alloc] init];}return self;}    #pragma mark - NSCopying- (id)copyWithZone:(nullable NSZone *)zone {WQUser *copy = [[[self class] allocWithZone:zone] initWithName:_name age:_age];copy.friends = [[NSMutableSet alloc] initWithSet:_friends copyItems:true];return copy;}    @end    </code></pre><h3 id="如何重写带-copy-关键字的-setter？"><a href="#如何重写带-copy-关键字的-setter？" class="headerlink" title="如何重写带 copy 关键字的 setter？"></a>如何重写带 copy 关键字的 setter？</h3><pre><code>/* 不要在 setter 里进行像 if(_obj != newObj) 这样的判断 什么情况会在 copy setter 里做 if 判断？ 例如，车速可能就    有最高速的限制，车速也不可能出现负值，如果车子的最高速为    300，则 setter 的方法就要改写成这样：     - (void)setSpeed:(int)_speed{ if(_speed &lt; 0) speed = 0; if(_speed &gt; 300) speed = 300; _speed = speed; } */- (void)setName:(NSString *)name {//[_name release]; // MRC_name = [name copy];}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;如何让自己的类用-copy-修饰符？&quot;&gt;&lt;a href=&quot;#如何让自己的类用-copy-修饰符？&quot; class=&quot;headerlink&quot; title=&quot;如何让自己的类用 copy 修饰符？&quot;&gt;&lt;/a&gt;如何让自己的类用 copy 修饰符？&lt;/h3&gt;&lt;pre&gt;&lt;code&gt; NSArray *tempArray = @[@&amp;quot;1&amp;quot;,@&amp;quot;2&amp;quot;];
+NSMutableArray *mutableCopyMuArray = [tempArray mutableCopy];
+
+// tempArray==0x600002649ce  mutableCopyMuArray==0x600002649ce0
+// 深copy tempArray 和 mutableCopyMuArray是完全不同的变量
+NSLog(@&amp;quot;tempArray==%p,mutableCopyMuArray==%p&amp;quot;,tempArray,mutableCopyMuArray);
+
+
+ WQUser *user = [[WQUser alloc] initWithName:@&amp;quot;lbj&amp;quot; age:35];
+/*
+ WQUser自己新建的类不具备copy功能，程序会crash
+ 声明NSCopying并且实现协议方法后，新建的类会具备copy功能
+ user==0x600002f7b400,copyUser==0x600002f7b3e0，copy出来完全不同的变量
+ */
+
+WQUser *copyUser = [user copy];
+
+NSLog(@&amp;quot;user==%p,copyUser==%p&amp;quot;,user,copyUser);&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>关键字</title>

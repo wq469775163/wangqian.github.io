@@ -254,6 +254,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/10/Config-bash-profile/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/10/Config-bash-profile/" itemprop="url">Mac下配置.bash_profile（环境变量）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T14:54:20+08:00">
+                2018-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Golang基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Golang基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。</p>
+<p>1、在命令行中输入：</p>
+<pre><code>export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin</code></pre><p>这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。<br>如果你的命令行命令可以使用，请直接跳到第2步。</p>
+<p>2、进入当前用户的home目录：</p>
+<pre><code>cd ~/</code></pre><p>3、创建.bash_profile文件：</p>
+<pre><code>touch .bash_profile</code></pre><p>4、 打开.bash_profile并编辑：</p>
+<pre><code>open .bash_profile</code></pre><p>5、这样就打开了一个记事本，会显示你之前配置过的path，修改记事本，强烈建议先备份下，然后根据自己需要配置。</p>
+<pre><code>JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+PATH=$JAVA_HOME/bin:$PATH:.
+CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
+export JAVA_HOME
+export PATH
+export CLASSPATH
+export GOPATH=/Users/wangqian/Desktop/Golang_Study
+export GOROOT=/usr/local/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang环境</p>
+<p>6、command+s保存关闭文件</p>
+<p>7、使修改后的配置生效命令：</p>
+<pre><code>source .bash_profile</code></pre><p>8、验证环境变量是否配置成功</p>
+<p>如果是java,在终端输入以下命令</p>
+<pre><code>java -version</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1536,7 +1698,7 @@ dispatch_apply(array3.count, queue, ^(size_t index) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
