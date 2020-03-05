@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-03-05T07:12:45.463Z</updated>
+  <updated>2020-03-05T08:29:46.050Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>synthesize和dynamic分别有什么作用？</title>
+    <link href="https://www.wangqian.ltd/2020/03/05/synthesizeAnddynamic/"/>
+    <id>https://www.wangqian.ltd/2020/03/05/synthesizeAnddynamic/</id>
+    <published>2020-03-05T08:20:14.000Z</published>
+    <updated>2020-03-05T08:29:46.050Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="synthesize和-dynamic分别有什么作用？"><a href="#synthesize和-dynamic分别有什么作用？" class="headerlink" title="@synthesize和@dynamic分别有什么作用？"></a>@synthesize和@dynamic分别有什么作用？</h3><ol><li>@property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;</li><li>@synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法</li><li>@dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter 方法同样会导致崩溃.</li><li>动态绑定:编译时没有问题，运行时才执行相应的方法。</li></ol><a id="more"></a><h3 id="ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"><a href="#ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？" class="headerlink" title="ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"></a>ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？</h3><p>1、对应基本数据类型默认关键字是 ：atomic,readwrite,assign<br>2、对于普通的 Objective-C对象是 ：atomic,readwrite,strong</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;synthesize和-dynamic分别有什么作用？&quot;&gt;&lt;a href=&quot;#synthesize和-dynamic分别有什么作用？&quot; class=&quot;headerlink&quot; title=&quot;@synthesize和@dynamic分别有什么作用？&quot;&gt;&lt;/a&gt;@synthesize和@dynamic分别有什么作用？&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;@property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;&lt;/li&gt;
+&lt;li&gt;@synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法&lt;/li&gt;
+&lt;li&gt;@dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter 方法同样会导致崩溃.&lt;/li&gt;
+&lt;li&gt;动态绑定:编译时没有问题，运行时才执行相应的方法。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>property的本质</title>

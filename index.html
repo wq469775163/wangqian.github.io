@@ -254,6 +254,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/03/05/synthesizeAnddynamic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/05/synthesizeAnddynamic/" itemprop="url">synthesize和dynamic分别有什么作用？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-05T16:20:14+08:00">
+                2020-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="synthesize和-dynamic分别有什么作用？"><a href="#synthesize和-dynamic分别有什么作用？" class="headerlink" title="@synthesize和@dynamic分别有什么作用？"></a>@synthesize和@dynamic分别有什么作用？</h3><ol>
+<li>@property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;</li>
+<li>@synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法</li>
+<li>@dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter 方法同样会导致崩溃.</li>
+<li>动态绑定:编译时没有问题，运行时才执行相应的方法。</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/05/synthesizeAnddynamic/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2019/12/30/oc-develop-properyt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1654,258 +1805,6 @@ for(var i = 0; i &lt; toprocess.length; i++){
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2019/08/22/oc-develop-deviceMeasurement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王乾">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wq's blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/22/oc-develop-deviceMeasurement/" itemprop="url">iPhone和iPad分辨率</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T16:02:28+08:00">
-                2019-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发技巧</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="iPhone和iPad分辨率"><a href="#iPhone和iPad分辨率" class="headerlink" title="iPhone和iPad分辨率"></a>iPhone和iPad分辨率</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/1.png" title="分辨率">
-
-
-<h3 id="iPhone"><a href="#iPhone" class="headerlink" title="iPhone"></a>iPhone</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPhone.png" title="iPhone">
-
-<h3 id="iPad"><a href="#iPad" class="headerlink" title="iPad"></a>iPad</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPad.png" title="iPad">
-
-<h3 id="iPad-Air"><a href="#iPad-Air" class="headerlink" title="iPad Air"></a>iPad Air</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadAir.png" title="iPad Air">
-
-<h3 id="iPad-Pro"><a href="#iPad-Pro" class="headerlink" title="iPad Pro"></a>iPad Pro</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadPro.png" title="iPad Pro">
-
-<h3 id="iPad-Mini"><a href="#iPad-Mini" class="headerlink" title="iPad Mini"></a>iPad Mini</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iPadMini.png" title="iPad Mini">
-
-<h3 id="iTouch"><a href="#iTouch" class="headerlink" title="iTouch"></a>iTouch</h3><img src="/2019/08/22/oc-develop-deviceMeasurement/iTouch.png" title="iTouch">
-
-<h3 id="判断设备类型"><a href="#判断设备类型" class="headerlink" title="判断设备类型"></a>判断设备类型</h3><p>#import &lt;sys/utsname.h&gt;</p>
-<pre><code>+ (NSString *)deviceType
-{
-struct utsname systemInfo;
-uname(&amp;systemInfo);
-NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
-
-//------------------------------iPhone---------------------------
-if ([platform isEqualToString:@&quot;iPhone1,1&quot;]) return @&quot;iPhone 2G&quot;;
-if ([platform isEqualToString:@&quot;iPhone1,2&quot;]) return @&quot;iPhone 3G&quot;;
-if ([platform isEqualToString:@&quot;iPhone2,1&quot;]) return @&quot;iPhone 3GS&quot;;
-if ([platform isEqualToString:@&quot;iPhone3,1&quot;] ||
-    [platform isEqualToString:@&quot;iPhone3,2&quot;] ||
-    [platform isEqualToString:@&quot;iPhone3,3&quot;]) return @&quot;iPhone 4&quot;;
-if ([platform isEqualToString:@&quot;iPhone4,1&quot;]) return @&quot;iPhone 4S&quot;;
-if ([platform isEqualToString:@&quot;iPhone5,1&quot;] ||
-    [platform isEqualToString:@&quot;iPhone5,2&quot;]) return @&quot;iPhone 5&quot;;
-if ([platform isEqualToString:@&quot;iPhone5,3&quot;] ||
-    [platform isEqualToString:@&quot;iPhone5,4&quot;]) return @&quot;iPhone 5c&quot;;
-if ([platform isEqualToString:@&quot;iPhone6,1&quot;] ||
-    [platform isEqualToString:@&quot;iPhone6,2&quot;]) return @&quot;iPhone 5s&quot;;
-if ([platform isEqualToString:@&quot;iPhone7,2&quot;]) return @&quot;iPhone 6&quot;;
-if ([platform isEqualToString:@&quot;iPhone7,1&quot;]) return @&quot;iPhone 6 Plus&quot;;
-if ([platform isEqualToString:@&quot;iPhone8,1&quot;]) return @&quot;iPhone 6s&quot;;
-if ([platform isEqualToString:@&quot;iPhone8,2&quot;]) return @&quot;iPhone 6s Plus&quot;;
-if ([platform isEqualToString:@&quot;iPhone8,4&quot;]) return @&quot;iPhone SE&quot;;
-if ([platform isEqualToString:@&quot;iPhone9,1&quot;] ||
-    [platform isEqualToString:@&quot;iPhone9,3&quot;]) return @&quot;iPhone 7&quot;;
-if ([platform isEqualToString:@&quot;iPhone9,2&quot;] ||
-    [platform isEqualToString:@&quot;iPhone9,4&quot;]) return @&quot;iPhone 7 Plus&quot;;
-if ([platform isEqualToString:@&quot;iPhone10,1&quot;] ||
-    [platform isEqualToString:@&quot;iPhone10,4&quot;]) return @&quot;iPhone 8&quot;;
-if ([platform isEqualToString:@&quot;iPhone10,2&quot;] ||
-    [platform isEqualToString:@&quot;iPhone10,5&quot;]) return @&quot;iPhone 8 Plus&quot;;
-if ([platform isEqualToString:@&quot;iPhone10,3&quot;] ||
-    [platform isEqualToString:@&quot;iPhone10,6&quot;]) return @&quot;iPhone X&quot;;
-if ([platform isEqualToString:@&quot;iPhone11,8&quot;]) return @&quot;iPhone XR&quot;;
-if ([platform isEqualToString:@&quot;iPhone11,2&quot;]) return @&quot;iPhone XS&quot;;
-if ([platform isEqualToString:@&quot;iPhone11,4&quot;] ||
-    [platform isEqualToString:@&quot;iPhone11,6&quot;]) return @&quot;iPhone XS Max&quot;;
-
-//------------------------------iPad--------------------------
-if ([platform isEqualToString:@&quot;iPad1,1&quot;]) return @&quot;iPad&quot;;
-if ([platform isEqualToString:@&quot;iPad2,1&quot;] ||
-    [platform isEqualToString:@&quot;iPad2,2&quot;] ||
-    [platform isEqualToString:@&quot;iPad2,3&quot;] ||
-    [platform isEqualToString:@&quot;iPad2,4&quot;]) return @&quot;iPad 2&quot;;
-if ([platform isEqualToString:@&quot;iPad3,1&quot;] ||
-    [platform isEqualToString:@&quot;iPad3,2&quot;] ||
-    [platform isEqualToString:@&quot;iPad3,3&quot;]) return @&quot;iPad 3&quot;;
-if ([platform isEqualToString:@&quot;iPad3,4&quot;] ||
-    [platform isEqualToString:@&quot;iPad3,5&quot;] ||
-    [platform isEqualToString:@&quot;iPad3,6&quot;]) return @&quot;iPad 4&quot;;
-if ([platform isEqualToString:@&quot;iPad4,1&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,2&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,3&quot;]) return @&quot;iPad Air&quot;;
-if ([platform isEqualToString:@&quot;iPad5,3&quot;] ||
-    [platform isEqualToString:@&quot;iPad5,4&quot;]) return @&quot;iPad Air 2&quot;;
-if ([platform isEqualToString:@&quot;iPad6,3&quot;] ||
-    [platform isEqualToString:@&quot;iPad6,4&quot;]) return @&quot;iPad Pro 9.7-inch&quot;;
-if ([platform isEqualToString:@&quot;iPad6,7&quot;] ||
-    [platform isEqualToString:@&quot;iPad6,8&quot;]) return @&quot;iPad Pro 12.9-inch&quot;;
-if ([platform isEqualToString:@&quot;iPad6,11&quot;] ||
-    [platform isEqualToString:@&quot;iPad6,12&quot;]) return @&quot;iPad 5&quot;;
-if ([platform isEqualToString:@&quot;iPad7,1&quot;] ||
-    [platform isEqualToString:@&quot;iPad7,2&quot;]) return @&quot;iPad Pro 12.9-inch 2&quot;;
-if ([platform isEqualToString:@&quot;iPad7,3&quot;] ||
-    [platform isEqualToString:@&quot;iPad7,4&quot;]) return @&quot;iPad Pro 10.5-inch&quot;;
-
-//------------------------------iPad Mini-----------------------
-if ([platform isEqualToString:@&quot;iPad2,5&quot;] ||
-    [platform isEqualToString:@&quot;iPad2,6&quot;] ||
-    [platform isEqualToString:@&quot;iPad2,7&quot;]) return @&quot;iPad mini&quot;;
-if ([platform isEqualToString:@&quot;iPad4,4&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,5&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,6&quot;]) return @&quot;iPad mini 2&quot;;
-if ([platform isEqualToString:@&quot;iPad4,7&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,8&quot;] ||
-    [platform isEqualToString:@&quot;iPad4,9&quot;]) return @&quot;iPad mini 3&quot;;
-if ([platform isEqualToString:@&quot;iPad5,1&quot;] ||
-    [platform isEqualToString:@&quot;iPad5,2&quot;]) return @&quot;iPad mini 4&quot;;
-
-//------------------------------iTouch------------------------
-if ([platform isEqualToString:@&quot;iPod1,1&quot;]) return @&quot;iTouch&quot;;
-if ([platform isEqualToString:@&quot;iPod2,1&quot;]) return @&quot;iTouch2&quot;;
-if ([platform isEqualToString:@&quot;iPod3,1&quot;]) return @&quot;iTouch3&quot;;
-if ([platform isEqualToString:@&quot;iPod4,1&quot;]) return @&quot;iTouch4&quot;;
-if ([platform isEqualToString:@&quot;iPod5,1&quot;]) return @&quot;iTouch5&quot;;
-if ([platform isEqualToString:@&quot;iPod7,1&quot;]) return @&quot;iTouch6&quot;;
-
-//------------------------------Samulitor-------------------------------------
-if ([platform isEqualToString:@&quot;i386&quot;] || 
-    [platform isEqualToString:@&quot;x86_64&quot;]) return @&quot;iPhone Simulator&quot;;
-
-return @&quot;Unknown&quot;;</code></pre><p>}</p>
-<p>btw：所有设备型号官网地址： <a href="https://www.theiphonewiki.com/wiki/Models" target="_blank" rel="noopener">https://www.theiphonewiki.com/wiki/Models</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1958,7 +1857,7 @@ return @&quot;Unknown&quot;;</code></pre><p>}</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
