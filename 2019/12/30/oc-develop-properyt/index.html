@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="wq&#39;s blogs">
 <meta property="og:description" content="@property 的本质是什么1、“属性” (property)作为 Objective-C 的一项特性，主要的作用就在于封装对象中的数据。“属性” (property)有两大概念：ivar（实例变量）、存取方法（access method ＝ getter + setter）。 2、property在runtime中是objc_property_t定义： typedef struct objc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-03T07:49:46.652Z">
+<meta property="og:updated_time" content="2020-03-05T07:12:45.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="property的本质">
 <meta name="twitter:description" content="@property 的本质是什么1、“属性” (property)作为 Objective-C 的一项特性，主要的作用就在于封装对象中的数据。“属性” (property)有两大概念：ivar（实例变量）、存取方法（access method ＝ getter + setter）。 2、property在runtime中是objc_property_t定义： typedef struct objc">
@@ -349,6 +349,8 @@
 <p>typedef struct objc_property *objc_property_t;</p>
 <a id="more"></a>
 
+<h3 id="weak属性需要在dealloc中置nil么？"><a href="#weak属性需要在dealloc中置nil么？" class="headerlink" title="weak属性需要在dealloc中置nil么？"></a>weak属性需要在dealloc中置nil么？</h3><p>在ARC环境无论是强指针还是弱指针都无需在 dealloc 设置为 nil ， ARC 会自动帮我们处理. </p>
+<p>在属性所指的对象遭到摧毁时，属性值也会清空(nil out)。</p>
 <h3 id="ivar、getter、setter-是如何生成并添加到这个类中的"><a href="#ivar、getter、setter-是如何生成并添加到这个类中的" class="headerlink" title="ivar、getter、setter 是如何生成并添加到这个类中的?"></a>ivar、getter、setter 是如何生成并添加到这个类中的?</h3><p>“自动合成”( autosynthesis)</p>
 <p>完成属性定义后，编译器会自动编写访问这些属性所需的方法，此过程叫做“自动合成”(autosynthesis)</p>
 <p>也可以在类的实现代码里通过 @synthesize 语法来指定实例变量的名字.</p>
@@ -559,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#property-的本质是什么"><span class="nav-number">1.</span> <span class="nav-text">@property 的本质是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ivar、getter、setter-是如何生成并添加到这个类中的"><span class="nav-number">2.</span> <span class="nav-text">ivar、getter、setter 是如何生成并添加到这个类中的?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#protocol-和-category-中如何使用-property"><span class="nav-number">3.</span> <span class="nav-text">@protocol 和 category 中如何使用 @property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类扩展（Class-Extension）"><span class="nav-number">4.</span> <span class="nav-text">类扩展（Class Extension）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#property-的本质是什么"><span class="nav-number">1.</span> <span class="nav-text">@property 的本质是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak属性需要在dealloc中置nil么？"><span class="nav-number">2.</span> <span class="nav-text">weak属性需要在dealloc中置nil么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ivar、getter、setter-是如何生成并添加到这个类中的"><span class="nav-number">3.</span> <span class="nav-text">ivar、getter、setter 是如何生成并添加到这个类中的?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#protocol-和-category-中如何使用-property"><span class="nav-number">4.</span> <span class="nav-text">@protocol 和 category 中如何使用 @property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类扩展（Class-Extension）"><span class="nav-number">5.</span> <span class="nav-text">类扩展（Class Extension）</span></a></li></ol></div>
             
 
           </div>
