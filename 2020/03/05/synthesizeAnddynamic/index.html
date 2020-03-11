@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="wq&#39;s blogs">
 <meta property="og:description" content="@synthesize和@dynamic分别有什么作用？ @property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var; @synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法 @">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-05T08:29:46.050Z">
+<meta property="og:updated_time" content="2020-03-11T06:57:32.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synthesize和dynamic分别有什么作用？">
 <meta name="twitter:description" content="@synthesize和@dynamic分别有什么作用？ @property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var; @synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法 @">
@@ -352,6 +352,22 @@
 </ol>
 <a id="more"></a>
 
+<h3 id="在有了自动合成属性实例变量之后，-synthesize还有哪些使用场景？"><a href="#在有了自动合成属性实例变量之后，-synthesize还有哪些使用场景？" class="headerlink" title="在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？"></a>在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？</h3><p>回答这个问题前，我们要搞清楚一个问题，什么情况下不会autosynthesis（自动合成）？</p>
+<ol>
+<li>同时重写了 setter 和 getter 时</li>
+<li>重写了只读属性的 getter 时</li>
+<li>使用了 @dynamic 时</li>
+<li>在 @protocol 中定义的所有属性</li>
+<li>在 category 中定义的所有属性</li>
+<li>重载的属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">	// 实例变量 = 成员变量 ＝ ivar</span><br><span class="line">@interface ViewController ()</span><br><span class="line"></span><br><span class="line">@property (nonatomic,readwrite,copy) NSString *firstName;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController &#123;</span><br><span class="line">//    NSString *_firstName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//@synthesize firstName = _firstName;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)setFirstName:(NSString *)firstName &#123;</span><br><span class="line">    _firstName  = [firstName copy];</span><br><span class="line">&#125;</span><br><span class="line">- (NSString *)firstName &#123;</span><br><span class="line">    return _firstName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>当你同时重写了 setter 和 getter 时，系统就不会生成 ivar（实例变量/成员变量）。这时候有两种选择：</p>
+<ol>
+<li>要么如第09行：手动创建 ivar</li>
+<li>要么如第12行：使用@synthesize foo = _foo;关联 @property 与 ivar。</li>
+</ol>
 <h3 id="ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"><a href="#ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？" class="headerlink" title="ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"></a>ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？</h3><p>1、对应基本数据类型默认关键字是 ：atomic,readwrite,assign<br>2、对于普通的 Objective-C对象是 ：atomic,readwrite,strong</p>
 
       
@@ -548,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#synthesize和-dynamic分别有什么作用？"><span class="nav-number">1.</span> <span class="nav-text">@synthesize和@dynamic分别有什么作用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"><span class="nav-number">2.</span> <span class="nav-text">ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#synthesize和-dynamic分别有什么作用？"><span class="nav-number">1.</span> <span class="nav-text">@synthesize和@dynamic分别有什么作用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在有了自动合成属性实例变量之后，-synthesize还有哪些使用场景？"><span class="nav-number">2.</span> <span class="nav-text">在有了自动合成属性实例变量之后，@synthesize还有哪些使用场景？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？"><span class="nav-number">3.</span> <span class="nav-text">ARC下，不显式指定任何属性关键字时，默认的关键字都有哪些？</span></a></li></ol></div>
             
 
           </div>
