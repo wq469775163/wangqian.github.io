@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-03-18T06:59:51.528Z</updated>
+  <updated>2020-03-19T09:32:15.338Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个objc对象如何进行内存布局</title>
+    <link href="https://www.wangqian.ltd/2020/03/19/oc-develop-objcmemory/"/>
+    <id>https://www.wangqian.ltd/2020/03/19/oc-develop-objcmemory/</id>
+    <published>2020-03-19T08:55:48.000Z</published>
+    <updated>2020-03-19T09:32:15.338Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一个objc对象如何进行内存布局？（考虑有父类的情况）"><a href="#一个objc对象如何进行内存布局？（考虑有父类的情况）" class="headerlink" title="一个objc对象如何进行内存布局？（考虑有父类的情况）"></a>一个objc对象如何进行内存布局？（考虑有父类的情况）</h3><p>所有的父类的成员变量和自己的成员变量都在该对象所对应的存储空间中。</p><p>每一个对象内部都有一个isa指针指向类对象，类对象存放本对象的以下内容</p><ol><li>对象方法列表</li><li>成员变量列表</li><li>属性列表</li><li>每个类对象内部也有一个isa指针指向元对象（meta class），元对象内部存放 类方法列表</li><li>superclass指针，指向对象的父类对象。<a id="more"></a></li></ol><p>根对象就是NSObject，它的superclass指针指向nil。</p><p>根元类的isa指针指向它自己，superclass指针指向NSObject。</p><img src="/2020/03/19/oc-develop-objcmemory/1.png"><h3 id="一个objc对象的isa的指针指向什么？有什么作用？"><a href="#一个objc对象的isa的指针指向什么？有什么作用？" class="headerlink" title="一个objc对象的isa的指针指向什么？有什么作用？"></a>一个objc对象的isa的指针指向什么？有什么作用？</h3><p>指向他的类对象,从而可以找到对象上的方法</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一个objc对象如何进行内存布局？（考虑有父类的情况）&quot;&gt;&lt;a href=&quot;#一个objc对象如何进行内存布局？（考虑有父类的情况）&quot; class=&quot;headerlink&quot; title=&quot;一个objc对象如何进行内存布局？（考虑有父类的情况）&quot;&gt;&lt;/a&gt;一个objc对象如何进行内存布局？（考虑有父类的情况）&lt;/h3&gt;&lt;p&gt;所有的父类的成员变量和自己的成员变量都在该对象所对应的存储空间中。&lt;/p&gt;
+&lt;p&gt;每一个对象内部都有一个isa指针指向类对象，类对象存放本对象的以下内容&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对象方法列表&lt;/li&gt;
+&lt;li&gt;成员变量列表&lt;/li&gt;
+&lt;li&gt;属性列表&lt;/li&gt;
+&lt;li&gt;每个类对象内部也有一个isa指针指向元对象（meta class），元对象内部存放 类方法列表&lt;/li&gt;
+&lt;li&gt;superclass指针，指向对象的父类对象。&lt;/li&gt;&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>runtime消息转发机制</title>
@@ -511,31 +538,6 @@ GOARCH=&amp;
       
         &lt;h3 id=&quot;单例类的生命周期&quot;&gt;&lt;a href=&quot;#单例类的生命周期&quot; class=&quot;headerlink&quot; title=&quot;单例类的生命周期&quot;&gt;&lt;/a&gt;单例类的生命周期&lt;/h3&gt;&lt;p&gt;单例实例在存储器的中位置&lt;/p&gt;
 &lt;p&gt;请看下面的表格展示了程序中中不同的变量在手机存储器中
-      
-    
-    </summary>
-    
-      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
-    
-    
-      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Objective-C中的各种遍历方式</title>
-    <link href="https://www.wangqian.ltd/2017/08/21/oc-develop-cycle/"/>
-    <id>https://www.wangqian.ltd/2017/08/21/oc-develop-cycle/</id>
-    <published>2017-08-21T07:58:16.000Z</published>
-    <updated>2019-08-21T08:58:24.635Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、使用for循环"><a href="#1、使用for循环" class="headerlink" title="1、使用for循环"></a>1、使用for循环</h3><p>要遍历字典、数组或者是集合，for循环是最简单也用的比较多的方法，示例如下：　</p><pre><code>// 数组NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];for (int i = 0; i &lt; array.count; i ++) {    NSString *obj = array[i];    NSLog(@&quot;%@&quot;,obj);}//  字典NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};NSArray *dictKeysArray = [dictM allKeys];for (int i = 0; i&lt;dictKeysArray.count; i++) {    NSString *key = dictKeysArray[i];    NSString *obj = [dictM objectForKey:key];    NSLog(@&quot;%@:%@&quot;,key,obj);}// 集合（无序、不能重复 其他和Array一样）NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];for (NSInteger index = 0; index &lt; set.allObjects.count; index ++) {    NSString *obj = set.allObjects[index];    NSLog(@&quot;%@&quot;,obj);}// 反向遍历（以数组为例子）NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];for (NSInteger index = array2.count - 1; index &gt;= 0; index --) {    NSLog(@&quot;%@&quot;,array2[index]);}</code></pre><p>优点：简单</p><p>缺点：由于字典和集合内部是无序的，导致我们在遍历字典和集合的时候需要借助一个新的“数组”作为中介来处理，多出了一部分开销。</p><h3 id="2、使用for…in循环"><a href="#2、使用for…in循环" class="headerlink" title="2、使用for…in循环"></a>2、使用for…in循环</h3><p>在Objective-C 2.0 中增加了for …In 形式的快速遍历。此种遍历方式语法简洁，速度飞快。示例如下：</p><pre><code>// 数组NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];for (id obj in array) {    NSLog(@&quot;%@&quot;,obj);}//  字典NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};for (id obj in dictM) {    NSLog(@&quot;%@&quot;,dictM[obj]);}// 集合（无序、不能重复 其他和Array一样）NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];for (id obj in set) {    NSLog(@&quot;%@&quot;,obj);}// 反向遍历（以数组为例子）NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];for (id obj in [array2 reverseObjectEnumerator]) {    NSLog(@&quot;%@&quot;,obj);}</code></pre><p>优点：1）语法简洁；2）效率最高；</p><p>缺点：无法获得当前遍历操作所针对的下标。</p><h3 id="3、使用NSEnumerator遍历"><a href="#3、使用NSEnumerator遍历" class="headerlink" title="3、使用NSEnumerator遍历"></a>3、使用NSEnumerator遍历</h3><p>NSEnumerator的使用和基本的for循环类似，不过代码量要大一些。示例如下：</p><pre><code>// 数组NSArray *arrayM = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];NSEnumerator *arrayEnumerator = [arrayM objectEnumerator];NSString *obj;while ((obj = [arrayEnumerator nextObject]) != nil) {    NSLog(@&quot;%@&quot;,obj);}// 字典NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};NSEnumerator *dictEnumerator = [dictM keyEnumerator];NSString *key;while ((key = [dictEnumerator nextObject]) != nil) {    NSString *obj = dictM[key];    NSLog(@&quot;%@&quot;,obj);}// 集合（无序、不能重复 其他和Array一样）NSSet * setM = [[NSSet alloc] initWithObjects:@&quot;one&quot;,@&quot;two&quot;,@&quot;three&quot;,@&quot;four&quot;, nil];NSEnumerator *setEnumerator = [setM objectEnumerator];NSString *setObj;while ((setObj = [setEnumerator nextObject]) != nil) {    NSLog(@&quot;%@&quot;,setObj);}// 反向遍历（以数组为例子）NSArray *arrayM2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];NSEnumerator *arrayEnumerator2 = [arrayM2 reverseObjectEnumerator];NSString *obj2;while ((obj2 = [arrayEnumerator2 nextObject]) != nil) {    NSLog(@&quot;%@&quot;,obj2);}</code></pre><p>优点：对于不同的数据类型，遍历的语法相似；内部可以简单的通过reverseObjectEnumerator设置进行反向遍历。</p><p>缺点：代码量稍大。</p><h3 id="4、基于Block的遍历方式"><a href="#4、基于Block的遍历方式" class="headerlink" title="4、基于Block的遍历方式"></a>4、基于Block的遍历方式</h3><p>基于Block的方式来进行遍历是最新引入的方法。它提供了遍历数组|字典等类型数据的最佳实践。示例如下：</p><pre><code>// 数组NSArray *array = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];[array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {    NSLog(@&quot;%lu--%@&quot;,(unsigned long)idx,obj);}];//  字典NSDictionary *dictM = @{@&quot;1&quot;:@&quot;one&quot;,@&quot;2&quot;:@&quot;two&quot;,@&quot;3&quot;:@&quot;three&quot;};[dictM enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {    NSLog(@&quot;%@:%@&quot;,key,obj);}];// 集合（无序、不能重复 其他和Array一样）NSSet *set = [NSSet setWithObjects:@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;, nil];[set enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {    NSLog(@&quot;%@&quot;,obj);}];// 反向遍历（以数组为例子）NSArray *array2 = @[@&quot;1&quot;,@&quot;2&quot;,@&quot;3&quot;,@&quot;4&quot;];[array2 enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {    NSLog(@&quot;%zd--%@&quot;,idx,obj);}];</code></pre><p>优点：1）遍历时可以直接从block中获得需要的所有信息，包括下标、值等。特别相对于字典而言，不需要做多余的编码即可同时获得key和value的值。</p><p>　　　2）能够直接修改block中key或者obj的类型为真实类型，可以省去类型转换的工作。</p><p>　　　3）可以通过NSEnumerationConcurrent枚举值开启并发迭代功能。</p><p>说明：基于Block的遍历方式在实现反向遍历的时候也非常简单，使用enumerateObjectsWithOptions方法，传递NSEnumerationReverse作为参数即可，在处理遍历操作的时候推荐基于Block的遍历方式。</p><h3 id="5、使GCD中的dispatch-apply函数"><a href="#5、使GCD中的dispatch-apply函数" class="headerlink" title="5、使GCD中的dispatch_apply函数"></a>5、使GCD中的dispatch_apply函数</h3><p>使用GCD中的dispatch_apply函数也能实现字典、数组等的遍历，该函数比较适合处理耗时较长、迭代次数较多的情况。示例如下：</p><pre><code>NSArray *array3 = @[@&quot;10&quot;,@&quot;11&quot;,@&quot;12&quot;,@&quot;13&quot;,@&quot;14&quot;];dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);dispatch_apply(array3.count, queue, ^(size_t index) {    NSLog(@&quot;%@--%@&quot;,array3[index],[NSThread currentThread]);});</code></pre><p>优点：开启多条线程并发处理遍历任务，执行效率高。</p><p>缺点：1）对于字典和集合的处理需借助数组；2）无法实现反向遍历。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1、使用for循环&quot;&gt;&lt;a href=&quot;#1、使用for循环&quot; class=&quot;headerlink&quot; title=&quot;1、使用for循环&quot;&gt;&lt;/a&gt;1、使用for循环&lt;/h3&gt;&lt;p&gt;要遍历字典、数组或者是集合，for循环是最简单也用的比较多的方法，示例如下：　&lt;/p
       
     
     </summary>
