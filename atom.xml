@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-03-19T09:32:15.338Z</updated>
+  <updated>2020-03-20T09:30:25.080Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>objc中向一个nil对象发送消息将会发生什么</title>
+    <link href="https://www.wangqian.ltd/2020/03/20/oc-develop-objc-sendmsgnil/"/>
+    <id>https://www.wangqian.ltd/2020/03/20/oc-develop-objc-sendmsgnil/</id>
+    <published>2020-03-20T09:26:49.000Z</published>
+    <updated>2020-03-20T09:30:25.080Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="objc中向一个nil对象发送消息将会发生什么"><a href="#objc中向一个nil对象发送消息将会发生什么" class="headerlink" title="objc中向一个nil对象发送消息将会发生什么"></a>objc中向一个nil对象发送消息将会发生什么</h3><p>在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:</p><p>objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。</p><p>objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。</p><a id="more"></a><p>[obj foo];在objc编译时，会被转意为：objc_msgSend(obj, @selector(foo));</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;objc中向一个nil对象发送消息将会发生什么&quot;&gt;&lt;a href=&quot;#objc中向一个nil对象发送消息将会发生什么&quot; class=&quot;headerlink&quot; title=&quot;objc中向一个nil对象发送消息将会发生什么&quot;&gt;&lt;/a&gt;objc中向一个nil对象发送消息将会发生什么&lt;/h3&gt;&lt;p&gt;在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:&lt;/p&gt;
+&lt;p&gt;objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。&lt;/p&gt;
+&lt;p&gt;objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>一个objc对象如何进行内存布局</title>
@@ -520,32 +544,6 @@ GOARCH=&amp;
     
     
       <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS单例模式，你真的写对了吗？</title>
-    <link href="https://www.wangqian.ltd/2017/08/23/oc-develop-singleton/"/>
-    <id>https://www.wangqian.ltd/2017/08/23/oc-develop-singleton/</id>
-    <published>2017-08-23T11:00:17.000Z</published>
-    <updated>2019-08-27T06:56:08.741Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="单例类的生命周期"><a href="#单例类的生命周期" class="headerlink" title="单例类的生命周期"></a>单例类的生命周期</h3><p>单例实例在存储器的中位置</p><p>请看下面的表格展示了程序中中不同的变量在手机存储器中的存储位置；</p><img src="/2017/08/23/oc-develop-singleton/memoryposition.png"><p>在程序中，一个单例类在程序中只能初始化一次，为了保证在使用中始终都是存在的，所以单例是在存储器的全局区域，在编译时分配内存，只要程序还在运行就会一直占用内存，在APP结束后由系统释放这部分内存内存。</p><p>单例模式很常见，但是，能真正把单利模式写对的却很少。在iOS中，一般我们都是用官方推荐的写法来写单例：</p><pre><code>+ (instancetype)sharedInstance {    static WQSQLiteManager *instance = nil;    static dispatch_once_t onceToken;    dispatch_once(&amp;onceToken, ^{        instance = [[WQSQLiteManager alloc] init];    });    return instance;}</code></pre><p>这也是我们单例模式的标准写法。 在使用时，我们只需要</p><pre><code>WQSQLiteManager *manager = [WQSQLiteManager sharedInstance];</code></pre><h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p>可是，在多人开发中，并不能保证所有人都会使用 sharedInstance 方法来创建对象；而一旦有人用 alloc，new 等来创建对象，这就不是单例了。例如：</p><pre><code>WQSQLiteManager *a = [WQSQLiteManager sharedInstance];WQSQLiteManager *b = [[WQSQLiteManager alloc] init];WQSQLiteManager *c = [WQSQLiteManager new];</code></pre><p>让我们来打印 a、b、c内存地址：</p><pre><code>a:&lt;WQSQLiteManager: 0x600001f1fdf0&gt;b:&lt;WQSQLiteManager: 0x600001f1fe00&gt;c:&lt;WQSQLiteManager: 0x600001f1fe10&gt;</code></pre><p>可以看出，<font color="#FF0000"> a、b、c 不是同一个对象，而所谓单例，就是不管我用何种方法创建对象，都必须是同一个。</font>所以，单例模式，绝不是一个 sharedInstance 就够了。</p><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>那么如何避免这种问题呢？我们知道：在对象创建的时候，alloc、new都会调用到 allocWithZone: 方法；使用拷贝创建对象时，会调用 copyWithZone: 、mutableCopyWithZone:方法；那么，重写这些方法，就可以让创建的对象唯一。</p><pre><code>+ (instancetype)sharedInstance {    static WQSQLiteManager *instance = nil;    static dispatch_once_t onceToken;    dispatch_once(&amp;onceToken, ^{    //   instance = [[WQSQLiteManager alloc] init];   instance = [[super allocWithZone:nil] init];});    return instance;}+ (instancetype)allocWithZone:(struct _NSZone *)zone {    return [WQSQLiteManager sharedInstance];}- (instancetype)copyWithZone:(NSZone *)zone {    return [WQSQLiteManager sharedInstance];}- (instancetype)mutableCopyWithZone:(NSZone *)zone     {        return [WQSQLiteManager sharedInstance];}</code></pre><p>再运行，看一看a、b、c：</p><pre><code>a:&lt;WQSQLiteManager: 0x60000331d690&gt;a:&lt;WQSQLiteManager: 0x60000331d690&gt;a:&lt;WQSQLiteManager: 0x60000331d690&gt;</code></pre><p>初始化一个对象的时候，[[Class alloc] init]，其实是做了两件事。<br>alloc 给对象分配内存空间，init是对对象的初始化，包括设置成员变量初值这些工作。<br>而给对象分配空间，除了alloc方法之外，还有另一个方法： allocWithZone.<br>使用alloc方法初始化一个类的实例的时候，默认是调用了allocWithZone的方法</p><h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>还有一种方法，就是直接禁用掉 alloc、new 、copy等方法：</p><pre><code>// 告诉编译器该方法不可用，如果强行调用编译器会提示错误+ (instancetype)alloc UNAVAILABLE_ATTRIBUTE;+ (instancetype)new __attribute__((unavailable(&quot;replace with &apos;sharedInstance&apos;&quot;)));- (instancetype)copy __attribute__((unavailable(&quot;replace with &apos;sharedInstance&apos;&quot;)));- (instancetype)mutableCopy __attribute__((unavailable(&quot;replace with &apos;sharedInstance&apos;&quot;)));+ (instancetype)sharedInstance {static WQSQLiteManager *instance = nil;static dispatch_once_t onceToken;dispatch_once(&amp;onceToken, ^{    //instance = [[WQSQLiteManager alloc] init];    instance = [[super allocWithZone:nil] init];});return instance;}</code></pre><p>那么，在调用这些方法的时候就会报错，</p><img src="/2017/08/23/oc-develop-singleton/singleErroe.png"><p>以此达到单例模式的要求，始终只有一个对象。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;单例类的生命周期&quot;&gt;&lt;a href=&quot;#单例类的生命周期&quot; class=&quot;headerlink&quot; title=&quot;单例类的生命周期&quot;&gt;&lt;/a&gt;单例类的生命周期&lt;/h3&gt;&lt;p&gt;单例实例在存储器的中位置&lt;/p&gt;
-&lt;p&gt;请看下面的表格展示了程序中中不同的变量在手机存储器中
-      
-    
-    </summary>
-    
-      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
-    
-    
-      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   

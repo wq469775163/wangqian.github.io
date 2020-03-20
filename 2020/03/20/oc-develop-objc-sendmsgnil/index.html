@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="iOS开发技巧,">
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="在成为最厉害最厉害最厉害的道路上。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wq&#39;s blogs">
-<meta property="og:url" content="https://www.wangqian.ltd/categories/Golang基础/index.html">
+<meta name="description" content="objc中向一个nil对象发送消息将会发生什么在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用: objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。 objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该">
+<meta name="keywords" content="iOS开发技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="objc中向一个nil对象发送消息将会发生什么">
+<meta property="og:url" content="https://www.wangqian.ltd/2020/03/20/oc-develop-objc-sendmsgnil/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="在成为最厉害最厉害最厉害的道路上。">
+<meta property="og:description" content="objc中向一个nil对象发送消息将会发生什么在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用: objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。 objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-20T09:30:25.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wq&#39;s blogs">
-<meta name="twitter:description" content="在成为最厉害最厉害最厉害的道路上。">
+<meta name="twitter:title" content="objc中向一个nil对象发送消息将会发生什么">
+<meta name="twitter:description" content="objc中向一个nil对象发送消息将会发生什么在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用: objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。 objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/categories/Golang基础/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2020/03/20/oc-develop-objc-sendmsgnil/">
 
 
 
 
 
-  <title>分类: Golang基础 | wq's blogs</title>
+  <title>objc中向一个nil对象发送消息将会发生什么 | wq's blogs</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,235 +241,174 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Golang基础<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/03/20/oc-develop-objc-sendmsgnil/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/11/22/GolangBasis-day06/" itemprop="url">
-              
-                <span itemprop="name">Go语言常量和模拟枚举</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">objc中向一个nil对象发送消息将会发生什么</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-22T15:17:38+08:00" content="2019-11-22">
-          11-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T17:26:49+08:00">
+                2020-03-20
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/14/ColangQuestion/" itemprop="url">
-              
-                <span itemprop="name">Golang疑问</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-14T17:47:43+08:00" content="2019-11-14">
-          11-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
+        <h3 id="objc中向一个nil对象发送消息将会发生什么"><a href="#objc中向一个nil对象发送消息将会发生什么" class="headerlink" title="objc中向一个nil对象发送消息将会发生什么"></a>objc中向一个nil对象发送消息将会发生什么</h3><p>在 Objective-C 中向 nil 发送消息是完全有效的——只是在运行时不会有任何作用:</p>
+<p>objc是动态语言，每个方法在运行时会被动态转为消息发送，即：objc_msgSend(receiver, selector)。</p>
+<p>objc在向一个对象发送消息时，runtime库寻找对象的isa指针，然后会根据对象的isa指针找到该对象实际所属的类，然后在该类中的方法列表以及其父类方法列表中寻找方法运行，然后在发送消息的时候，objc_msgSend方法不会返回值，所谓的返回内容都是具体调用时执行的。 那么，回到本题，如果向一个nil对象发送消息，首先在寻找对象的isa指针时就是0地址返回了，所以不会出现任何错误。</p>
+<a id="more"></a>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/13/GolangBasis-day05/" itemprop="url">
-              
-                <span itemprop="name">Golang语言指针</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-13T17:33:37+08:00" content="2019-11-13">
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/19/GolangBasis-day04/" itemprop="url">
-              
-                <span itemprop="name">Go语言基本语法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-19T19:36:16+08:00" content="2019-09-19">
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/12/GolangBasis-day02/" itemprop="url">
-              
-                <span itemprop="name">GOROOT,GOPATH,GOBIN,project目录</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-12T14:03:28+08:00" content="2018-09-12">
-          09-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/10/Config-bash-profile/" itemprop="url">
-              
-                <span itemprop="name">Mac下配置.bash_profile（环境变量）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-10T14:54:20+08:00" content="2018-09-10">
-          09-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/02/GolangBasis-day01/" itemprop="url">
-              
-                <span itemprop="name">Mac环境下安装、配置golang</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-02T11:20:42+08:00" content="2018-09-02">
-          09-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/16/GolangBasis-day03/" itemprop="url">
-              
-                <span itemprop="name">标识符、关键字、变量</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-16T15:39:25+08:00" content="2018-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+<p>[obj foo];在objc编译时，会被转意为：objc_msgSend(obj, @selector(foo));</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发技巧/" rel="tag"># iOS开发技巧</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/19/oc-develop-objcmemory/" rel="next" title="一个objc对象如何进行内存布局">
+                <i class="fa fa-chevron-left"></i> 一个objc对象如何进行内存布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -475,6 +416,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -495,8 +440,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -581,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#objc中向一个nil对象发送消息将会发生什么"><span class="nav-number">1.</span> <span class="nav-text">objc中向一个nil对象发送消息将会发生什么</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -718,6 +688,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
