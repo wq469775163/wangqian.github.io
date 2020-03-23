@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Golang基础,">
+  <meta name="keywords" content="iOS开发技巧,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。 1、在命令行中输入： export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。如">
-<meta name="keywords" content="Golang基础">
+<meta name="description" content="Objective-C 中对 self 和 super 的理解@implementation Son - (instancetype)init { self = [super init]; if (self) {      // 1、self 是类的隐藏参数，指向当前调用方法的这个类的实例     // 2、super 是一个 Magic Keyword， 它本质是一个编译器标示符，和 self">
+<meta name="keywords" content="iOS开发技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下配置.bash_profile（环境变量）">
-<meta property="og:url" content="https://www.wangqian.ltd/2018/09/10/Config-bash-profile/index.html">
+<meta property="og:title" content="Objective-C 中对 self 和 super 的理解">
+<meta property="og:url" content="https://www.wangqian.ltd/2020/03/23/oc-develop-selfAndSuper/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。 1、在命令行中输入： export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。如">
+<meta property="og:description" content="Objective-C 中对 self 和 super 的理解@implementation Son - (instancetype)init { self = [super init]; if (self) {      // 1、self 是类的隐藏参数，指向当前调用方法的这个类的实例     // 2、super 是一个 Magic Keyword， 它本质是一个编译器标示符，和 self">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-12T07:01:27.411Z">
+<meta property="og:updated_time" content="2020-03-23T04:12:11.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下配置.bash_profile（环境变量）">
-<meta name="twitter:description" content="最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。 1、在命令行中输入： export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。如">
+<meta name="twitter:title" content="Objective-C 中对 self 和 super 的理解">
+<meta name="twitter:description" content="Objective-C 中对 self 和 super 的理解@implementation Son - (instancetype)init { self = [super init]; if (self) {      // 1、self 是类的隐藏参数，指向当前调用方法的这个类的实例     // 2、super 是一个 Magic Keyword， 它本质是一个编译器标示符，和 self">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/2018/09/10/Config-bash-profile/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2020/03/23/oc-develop-selfAndSuper/">
 
 
 
 
 
-  <title>Mac下配置.bash_profile（环境变量） | wq's blogs</title>
+  <title>Objective-C 中对 self 和 super 的理解 | wq's blogs</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2018/09/10/Config-bash-profile/">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/03/23/oc-develop-selfAndSuper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王乾">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mac下配置.bash_profile（环境变量）</h1>
+          <h1 class="post-title" itemprop="name headline">Objective-C 中对 self 和 super 的理解</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T14:54:20+08:00">
-                2018-09-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T11:57:55+08:00">
+                2020-03-23
               </time>
             
 
@@ -307,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Golang基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Golang基础</span>
+                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发技巧</span>
                   </a>
                 </span>
 
@@ -344,28 +344,41 @@
       
 
       
-        <p>最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。</p>
-<p>1、在命令行中输入：</p>
-<pre><code>export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin</code></pre><p>这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。<br>如果你的命令行命令可以使用，请直接跳到第2步。</p>
-<p>2、进入当前用户的home目录：</p>
-<pre><code>cd ~/</code></pre><p>3、创建.bash_profile文件：</p>
-<pre><code>touch .bash_profile</code></pre><p>4、 打开.bash_profile并编辑：</p>
-<pre><code>open .bash_profile</code></pre><p>5、这样就打开了一个记事本，会显示你之前配置过的path，修改记事本，强烈建议先备份下，然后根据自己需要配置。</p>
-<pre><code>JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
-PATH=$JAVA_HOME/bin:$PATH:.
-CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
-export JAVA_HOME
-export PATH
-export CLASSPATH
-export GOPATH=/Users/wangqian/Desktop/Golang_Study
-export GOROOT=/usr/local/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang环境</p>
-<p>6、command+s保存关闭文件</p>
-<p>7、使修改后的配置生效命令：</p>
-<pre><code>source .bash_profile</code></pre><p>8、验证环境变量是否配置成功</p>
-<p>如果是java,在终端输入以下命令</p>
-<pre><code>java -version</code></pre>
+        <h3 id="Objective-C-中对-self-和-super-的理解"><a href="#Objective-C-中对-self-和-super-的理解" class="headerlink" title="Objective-C 中对 self 和 super 的理解"></a>Objective-C 中对 self 和 super 的理解</h3><pre><code>@implementation Son
+- (instancetype)init {
+self = [super init];
+if (self) {
+
+    // 1、self 是类的隐藏参数，指向当前调用方法的这个类的实例
+    // 2、super 是一个 Magic Keyword， 它本质是一个编译器标示符，和 self 是指向的同一个消息接受者
+    // 3、当使用 self 调用方法时，会从当前类的方法列表中开始找，如果没有，就从父类中再找；而当使用 super 时，则从父类的方法列表中开始找。然后调用父类的这个方法
+    NSLog(@&quot;%@&quot;,NSStringFromClass([self class]));   // 输出 Son
+    NSLog(@&quot;%@&quot;,NSStringFromClass([super class]));  // 输出 Son
+}
+return self;
+}</code></pre><p>疑问点：父类中此时若使用点语法（ self.lastName ）也即 setter 设置方法，那么调用将会是子类的设置方法，为什么？</p>
+<a id="more"></a>
+
+<h3 id="runtime如何通过selector找到对应的IMP地址？"><a href="#runtime如何通过selector找到对应的IMP地址？" class="headerlink" title="runtime如何通过selector找到对应的IMP地址？"></a>runtime如何通过selector找到对应的IMP地址？</h3><p>每一个类对象中都一个方法列表,方法列表中记录着方法的名称,方法实现,以及参数类型,其实selector本质就是方法名称,通过这个方法名称就可以在方法列表中找到对应的方法实现.</p>
+<h3 id="使用runtime-Associate方法关联的对象，需要在主对象dealloc的时候释放么？"><a href="#使用runtime-Associate方法关联的对象，需要在主对象dealloc的时候释放么？" class="headerlink" title="使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？"></a>使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？</h3><p> ARC 、MRC都不需要</p>
+<h3 id="objc中的类方法和实例方法有什么本质区别和联系？"><a href="#objc中的类方法和实例方法有什么本质区别和联系？" class="headerlink" title="objc中的类方法和实例方法有什么本质区别和联系？"></a>objc中的类方法和实例方法有什么本质区别和联系？</h3><p>类方法：</p>
+<ul>
+<li>类方法是属于类对象的</li>
+<li>类方法中的self是类对象</li>
+<li>类方法可以调用其他的类方法</li>
+<li>类方法中不能访问成员变量（类方法中不能访问成员变量、不能调用对象方法）</li>
+<li>类方法中不能直接调用对象方法</li>
+</ul>
+<p>实例方法：</p>
+<ul>
+<li>实例方法是属于实例对象的</li>
+<li>实例方法只能通过实例对象调用</li>
+<li>实例方法中的self是实例对象</li>
+<li>实例方法中可以访问成员变量</li>
+<li>实例方法中直接调用实例方法</li>
+<li>实例方法中也可以调用类方法(通过类名)</li>
+</ul>
+
       
     </div>
     
@@ -382,7 +395,7 @@ export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang
       
         <div class="post-tags">
           
-            <a href="/tags/Golang基础/" rel="tag"># Golang基础</a>
+            <a href="/tags/iOS开发技巧/" rel="tag"># iOS开发技巧</a>
           
         </div>
       
@@ -395,8 +408,8 @@ export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/02/GolangBasis-day01/" rel="next" title="Mac环境下安装、配置golang">
-                <i class="fa fa-chevron-left"></i> Mac环境下安装、配置golang
+              <a href="/2020/03/20/oc-develop-objc-sendmsgnil/" rel="next" title="objc中向一个nil对象发送消息将会发生什么">
+                <i class="fa fa-chevron-left"></i> objc中向一个nil对象发送消息将会发生什么
               </a>
             
           </div>
@@ -404,10 +417,6 @@ export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/12/GolangBasis-day02/" rel="prev" title="GOROOT,GOPATH,GOBIN,project目录">
-                GOROOT,GOPATH,GOBIN,project目录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -459,8 +468,17 @@ export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -545,6 +563,22 @@ export PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C-中对-self-和-super-的理解"><span class="nav-number">1.</span> <span class="nav-text">Objective-C 中对 self 和 super 的理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runtime如何通过selector找到对应的IMP地址？"><span class="nav-number">2.</span> <span class="nav-text">runtime如何通过selector找到对应的IMP地址？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用runtime-Associate方法关联的对象，需要在主对象dealloc的时候释放么？"><span class="nav-number">3.</span> <span class="nav-text">使用runtime Associate方法关联的对象，需要在主对象dealloc的时候释放么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#objc中的类方法和实例方法有什么本质区别和联系？"><span class="nav-number">4.</span> <span class="nav-text">objc中的类方法和实例方法有什么本质区别和联系？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
