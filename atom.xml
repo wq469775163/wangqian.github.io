@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-03-23T04:12:11.203Z</updated>
+  <updated>2020-04-02T10:22:30.733Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>runloop</title>
+    <link href="https://www.wangqian.ltd/2020/04/02/oc-develop-runloop/"/>
+    <id>https://www.wangqian.ltd/2020/04/02/oc-develop-runloop/</id>
+    <published>2020-04-02T09:58:34.000Z</published>
+    <updated>2020-04-02T10:22:30.733Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="runloop和线程有什么关系？"><a href="#runloop和线程有什么关系？" class="headerlink" title="runloop和线程有什么关系？"></a>runloop和线程有什么关系？</h3><p>总的说来，Run loop，正如其名，loop表示某种循环，和run放在一起就表示一直在运行着的循环。实际上，run loop和线程是紧密相连的，可以这样说run loop是为了线程而生，没有线程，它就没有存在的必要.每个线程包括程序的主线程（main thread）都有与之对应的run loop对象。</p><p>1、主线程的run loop默认是启动的。</p><p>iOS的应用程序里面，程序启动后会有一个如下的main()函数</p><pre><code>int main(int argc, char * argv[]) {   @autoreleasepool {   return UIApplicationMain(argc, argv, nil,     NSStringFromClass([AppDelegate class]));   }}</code></pre><p>重点是UIApplicationMain()函数，这个方法会为main thread设置一个NSRunLoop对象，这就解释了：为什么我们的应用可以在无人操作的时候休息，需要让它干活的时候又能立马响应。</p><p>2、对其它线程来说，run loop默认是没有启动的，如果你需要更多的线程交互则可以手动配置和启动，如果线程只是去执行一个长时间的已确定的任务则不需要。</p><p>3、在任何一个Cocoa程序的线程中，都可以通过以下代码获取当前线程的run loop</p><pre><code>NSRunLoop *runloop = [NSRunLoop currentRunLoop];</code></pre><a id="more"></a><h3 id="runloop的mode作用是什么？"><a href="#runloop的mode作用是什么？" class="headerlink" title="runloop的mode作用是什么？"></a>runloop的mode作用是什么？</h3><p>model 主要是用来指定事件在运行循环的优先级，分为：</p><ul><li>NSDefaultRunLoopMode（kCFRunLoopDefaultMode）：默认，空闲状态</li><li>UITrackingRunLoopMode：ScrollView滑动时</li><li>UIInitializationRunLoopMode：启动时</li><li>NSRunLoopCommonModes（kCFRunLoopCommonModes）：Mode集合</li></ul><p>苹果公开提供的 Mode 有两个： </p><ul><li>NSDefaultRunLoopMode（kCFRunLoopDefaultMode）</li><li>NSRunLoopCommonModes（kCFRunLoopCommonModes）</li></ul><h3 id="以-scheduledTimerWithTimeInterval…的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？"><a href="#以-scheduledTimerWithTimeInterval…的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？" class="headerlink" title="以+ scheduledTimerWithTimeInterval…的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？"></a>以+ scheduledTimerWithTimeInterval…的方式触发的timer，在滑动页面上的列表时，timer会暂定回调，为什么？如何解决？</h3><p>RunLoop只能运行在一种mode下，如果要换mode，当前loop需要重启成新的。利用这个机制，ScrollView滚动过程中NSDefaultRunLoopMode（kCFRunLoopDefaultMode）的mode会切换到UITrackingRunLoopMode来保证ScrollView的流畅滑动。</p><p>如果我们把一个NSTimer对象以NSDefaultRunLoopMode（kCFRunLoopDefaultMode）添加到主运行循环中的时候, ScrollView滚动过程中会因为mode的切换，而导致NSTimer将不再被调度。</p><p>同时因为mode还是可定制的，所以：Timer计时会被scrollView的滑动影响的问题可以通过将timer添加到NSRunLoopCommonModes（kCFRunLoopCommonModes）来解决。代码如下：</p><pre><code>//将timer添加到NSDefaultRunLoopMode中[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];//然后再添加到NSRunLoopCommonModes里NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];</code></pre><h3 id="猜想runloop内部是如何实现的？"><a href="#猜想runloop内部是如何实现的？" class="headerlink" title="猜想runloop内部是如何实现的？"></a>猜想runloop内部是如何实现的？</h3><p>一般来讲，一个线程一次只能执行一个任务，执行完成后线程就会退出。我们需要一个极致，让线程随时处理事件但不退出。</p><pre><code>int main(int argc, char * argv[]) { //程序一直运行状态 while (AppIsRunning) {  //睡眠状态，等待唤醒事件  id whoWakesMe = SleepForWakingUp();  //得到唤醒事件  id event = GetEvent(whoWakesMe);  //开始处理事件  HandleEvent(event); } return 0;}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;runloop和线程有什么关系？&quot;&gt;&lt;a href=&quot;#runloop和线程有什么关系？&quot; class=&quot;headerlink&quot; title=&quot;runloop和线程有什么关系？&quot;&gt;&lt;/a&gt;runloop和线程有什么关系？&lt;/h3&gt;&lt;p&gt;总的说来，Run loop，正如其名，loop表示某种循环，和run放在一起就表示一直在运行着的循环。实际上，run loop和线程是紧密相连的，可以这样说run loop是为了线程而生，没有线程，它就没有存在的必要.每个线程包括程序的主线程（main thread）都有与之对应的run loop对象。&lt;/p&gt;
+&lt;p&gt;1、主线程的run loop默认是启动的。&lt;/p&gt;
+&lt;p&gt;iOS的应用程序里面，程序启动后会有一个如下的main()函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int main(int argc, char * argv[]) {
+   @autoreleasepool {
+   return UIApplicationMain(argc, argv, nil,     NSStringFromClass([AppDelegate class]));
+   }
+}&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重点是UIApplicationMain()函数，这个方法会为main thread设置一个NSRunLoop对象，这就解释了：为什么我们的应用可以在无人操作的时候休息，需要让它干活的时候又能立马响应。&lt;/p&gt;
+&lt;p&gt;2、对其它线程来说，run loop默认是没有启动的，如果你需要更多的线程交互则可以手动配置和启动，如果线程只是去执行一个长时间的已确定的任务则不需要。&lt;/p&gt;
+&lt;p&gt;3、在任何一个Cocoa程序的线程中，都可以通过以下代码获取当前线程的run loop&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSRunLoop *runloop = [NSRunLoop currentRunLoop];&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Objective-C 中对 self 和 super 的理解</title>
@@ -527,32 +557,6 @@ GOARCH=&amp;
     
     
       <category term="GitHub" scheme="https://www.wangqian.ltd/tags/GitHub/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown基本语法</title>
-    <link href="https://www.wangqian.ltd/2018/08/29/MarkdownGrammar/"/>
-    <id>https://www.wangqian.ltd/2018/08/29/MarkdownGrammar/</id>
-    <published>2018-08-29T06:05:32.000Z</published>
-    <updated>2019-08-29T09:26:10.651Z</updated>
-    
-    <content type="html"><![CDATA[<p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p><h3 id="1、标题"><a href="#1、标题" class="headerlink" title="1、标题"></a>1、标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。<br>示例：</p><pre><code># 这是一级标题## 这是二级标题### 这是三级标题#### 这是四级标题##### 这是五级标题###### 这是六级标题</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/1.png"><h3 id="2、字体"><a href="#2、字体" class="headerlink" title="2、字体"></a>2、字体</h3><p>加粗 - 要加粗的文字左右分别用两个*号包起来</p><p>斜体 - 要倾斜的文字左右分别用一个*号包起来</p><p>斜体加粗 - 要倾斜和加粗的文字左右分别用三个*号包起来</p><p>删除线 - 要加删除线的文字左右分别用两个~~号包起来</p><p>修改字体颜色 - <font color="#FF0000"> 字体改成红色了 </font><br>示例：</p><pre><code>**这是加粗的文字***这是倾斜的文字****这是斜体加粗的文字***~~这是加删除线的文字~~&lt;font color=红色&gt; 字体改成红色了 &lt;/font&gt;</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/2.png"><h3 id="3、引用"><a href="#3、引用" class="headerlink" title="3、引用"></a>3、引用</h3><p>在需要引用的文字前加&gt;即可。<br>示例：</p><pre><code>&gt;这里是引用的内容&gt;&gt;这里是引用的内容</code></pre><p>效果如下：</p><img src="/2018/08/29/MarkdownGrammar/3.png" title="This is an image"><h3 id="4、分割线"><a href="#4、分割线" class="headerlink" title="4、分割线"></a>4、分割线</h3><p>三个或者三个以上 - 或者 * 都可以<br>示例：</p><pre><code>-------*******</code></pre><h3 id="5、图片"><a href="#5、图片" class="headerlink" title="5、图片"></a>5、图片</h3><pre><code>![图片alt](图片地址 &apos;&apos;图片title&apos;&apos;)图片alt就是显示在图片下面的文字，相当于对图片内容的解释。图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加</code></pre><h3 id="6、超链接"><a href="#6、超链接" class="headerlink" title="6、超链接"></a>6、超链接</h3><pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)title可加可不加</code></pre><p>示例：</p><pre><code>[百度](http://baidu.com)</code></pre><p>效果如下：</p><p><a href="http://baidu.com" target="_blank" rel="noopener">百度</a></p><h3 id="7、表格"><a href="#7、表格" class="headerlink" title="7、表格"></a>7、表格</h3><p>语法如下：</p><pre><code>表头|表头|表头---|:--:|---:内容|内容|内容内容|内容|内容第二行分割表头和内容。- 有一个就行，为了对齐，多加了几个文字默认居左-两边加：表示文字居中-右边加：表示文字居右注：原生的语法两边都要用 | 包起来。此处省略</code></pre><p>示例：</p><pre><code>姓名|技能|排行--|:--:|--:刘备|哭|大哥关羽|打|二哥张飞|骂|三弟</code></pre><p>效果如下：</p><table><thead><tr><th>姓名</th><th align="center">技能</th><th align="right">排行</th></tr></thead><tbody><tr><td>刘备</td><td align="center">哭</td><td align="right">大哥</td></tr><tr><td>关羽</td><td align="center">打</td><td align="right">二哥</td></tr><tr><td>张飞</td><td align="center">骂</td><td align="right">三弟</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。&lt;/p&gt;
-&lt;h3 id=&quot;1、标题&quot;&gt;&lt;a href=&quot;#1、标题&quot; class=&quot;headerlink&quot; title=&quot;1、标题&quot;&gt;&lt;/a&gt;1、标题&lt;/h3&gt;&lt;p&gt;在想要设
-      
-    
-    </summary>
-    
-      <category term="工具" scheme="https://www.wangqian.ltd/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="Markdown" scheme="https://www.wangqian.ltd/tags/Markdown/"/>
     
   </entry>
   
