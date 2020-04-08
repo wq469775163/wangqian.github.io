@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-04-03T08:31:18.570Z</updated>
+  <updated>2020-04-08T06:35:36.413Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>autoreleasepool</title>
+    <link href="https://www.wangqian.ltd/2020/04/08/autoreleasepool/"/>
+    <id>https://www.wangqian.ltd/2020/04/08/autoreleasepool/</id>
+    <published>2020-04-08T06:29:17.000Z</published>
+    <updated>2020-04-08T06:35:36.413Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="objc使用什么机制管理对象内存？"><a href="#objc使用什么机制管理对象内存？" class="headerlink" title="objc使用什么机制管理对象内存？"></a>objc使用什么机制管理对象内存？</h3><p>通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。</p><h3 id="ARC通过什么方式帮助开发者管理内存？"><a href="#ARC通过什么方式帮助开发者管理内存？" class="headerlink" title="ARC通过什么方式帮助开发者管理内存？"></a>ARC通过什么方式帮助开发者管理内存？</h3><p>ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期和运行期两部分共同帮助开发者管理内存。<br> 在编译期，ARC用的是更底层的C接口实现的retain/release/autorelease，这样做性能更好，也是为什么不能在ARC环境下手动retain/release/autorelease，同时对同一上下文的同一对象的成对retain/release操作进行优化（即忽略掉不必要的操作）；ARC也包含运行期组件，这个地方做的优化比较复杂，但也不能被忽略。</p><a id="more"></a><h3 id="一个autorealese对象在什么时刻释放？"><a href="#一个autorealese对象在什么时刻释放？" class="headerlink" title="一个autorealese对象在什么时刻释放？"></a>一个autorealese对象在什么时刻释放？</h3><p>1、AutoRelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前runloop迭代结束时释放。本质上说本次runloop迭代结束时清理到本次迭代期间内被放到autorelease pool中的对象。</p><p> 2、一个autorealese对象在什么时刻释放?分两种情况：手动干预释放时机–指定autoreleasepool 就是所谓的：当前作用域大括号结束时释放。系统自动去释放。</p><p> 3、创建自动释放池的时机？运行循环检测到事件并启动后，就会创建自动释放池。</p><p>  4、子线程默认是没有Runloop的，编程人员在调用 [NSRunLoop CurrentRunLoop] 时，是以懒加载的形式自动创建 RunLoop 的，而没法手动创建。</p><p>5、arc下使用@autoreleasepool{} 的意义？</p><pre><code> // 其中如果字符串的数量少于10个，字符串会存放到常量区，所以无论你for多少次，少于10个字符串的对象在内存只生成一次。 //反之，字符串的数量大于或等于10个的时候，就会在堆区生成1024*1024*30个内存对象。for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {    // 产生大量临时变量时，避免内存使用峰值过高，及时释放内存。    NSString * str = [NSString stringWithFormat:@&quot;0123456789&quot;];}for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {    @autoreleasepool {        NSString * str = [NSString stringWithFormat:@&quot;0123456789&quot;];    }}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;objc使用什么机制管理对象内存？&quot;&gt;&lt;a href=&quot;#objc使用什么机制管理对象内存？&quot; class=&quot;headerlink&quot; title=&quot;objc使用什么机制管理对象内存？&quot;&gt;&lt;/a&gt;objc使用什么机制管理对象内存？&lt;/h3&gt;&lt;p&gt;通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。&lt;/p&gt;
+&lt;h3 id=&quot;ARC通过什么方式帮助开发者管理内存？&quot;&gt;&lt;a href=&quot;#ARC通过什么方式帮助开发者管理内存？&quot; class=&quot;headerlink&quot; title=&quot;ARC通过什么方式帮助开发者管理内存？&quot;&gt;&lt;/a&gt;ARC通过什么方式帮助开发者管理内存？&lt;/h3&gt;&lt;p&gt;ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期和运行期两部分共同帮助开发者管理内存。&lt;br&gt; 在编译期，ARC用的是更底层的C接口实现的retain/release/autorelease，这样做性能更好，也是为什么不能在ARC环境下手动retain/release/autorelease，同时对同一上下文的同一对象的成对retain/release操作进行优化（即忽略掉不必要的操作）；ARC也包含运行期组件，这个地方做的优化比较复杂，但也不能被忽略。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS中常用的几种_持久化存储方式</title>
@@ -537,31 +558,6 @@ GOARCH=&amp;
         &lt;p&gt;最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。&lt;/p&gt;
 &lt;p&gt;1、在命令行中输入：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;expor
-      
-    
-    </summary>
-    
-      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac环境下安装、配置golang</title>
-    <link href="https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/"/>
-    <id>https://www.wangqian.ltd/2018/09/02/GolangBasis-day01/</id>
-    <published>2018-09-02T03:20:42.000Z</published>
-    <updated>2019-09-16T06:25:45.500Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h3><p>1、国内镜像下载地址：<a href="https://golang.google.cn/dl/" target="_blank" rel="noopener">https://golang.google.cn/dl/</a><br>2、终端中输入go ，若出现下图即安装成功。</p><pre><code>Go is a tool for managing Go source code.Usage:go &lt;command&gt; [arguments]The commands are:bug         start a bug reportbuild       compile packages and dependenciesclean       remove object files and cached filesdoc         show documentation for package or symbolenv         print Go environment informationfix         update packages to use new APIsfmt         gofmt (reformat) package sourcesgenerate    generate Go files by processing sourceget         download and install packages and dependenciesinstall     compile and install packages and dependencieslist        list packages or modulesmod         module maintenancerun         compile and run Go programtest        test packagestool        run specified go toolversion     print Go versionvet         report likely mistakes in packagesUse &quot;go help &lt;command&gt;&quot; for more information about a command.Additional help topics:buildmode   build modesc           calling between Go and Ccache       build and test cachingenvironment environment variablesfiletype    file typesgo.mod      the go.mod filegopath      GOPATH environment variablegopath-get  legacy GOPATH go getgoproxy     module proxy protocolimportpath  import path syntaxmodules     modules, module versions, and moremodule-get  module-aware go getpackages    package lists and patternstestflag    testing flagstestfunc    testing functionsUse &quot;go help &lt;topic&gt;&quot; for more information about that topic.</code></pre><p>3、开发环境构建：通过go version查看版本，在1.8版本前必须设置这个环境变量。1.8版本后（含1.8）如果没有设置使用默认值</p><pre><code>在 Unix 上默认为 $HOME/go 在 Windows 上默认为 %USERPROFILE%/go 在 Mac 上 GOPATH 可以通过修改 ~/.bash_profile 来设置</code></pre><h3 id="2、测试是否安装成功"><a href="#2、测试是否安装成功" class="headerlink" title="2、测试是否安装成功"></a>2、测试是否安装成功</h3><p>新建源码文件hello.go</p><pre><code>cd /Users/wangqian/Desktop/Golang_Study/src  //打开源文件存放的位置vim hello.go   // 编辑hello.go文件</code></pre><p>编码hello.go文件：</p><pre><code>package mainimport &quot;fmt&quot;func main(){fmt.Printf(&quot;hello world\n&quot;)}</code></pre><p>退出保存后直接运行</p><pre><code>go run hello.gowangqiandeMacBook-Pro:src wangqian$ go run hello.gohello world</code></pre><p>现在我们把源文件编译成二进制文件，并且运行当前二进制文件</p><pre><code>go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ go build -ldflags &quot;-s -w&quot; -o hi.outwangqiandeMacBook-Pro:src wangqian$ ./hi.outhello world</code></pre><p>这样在当前文件夹中就会存在一个源文件，一个编译文件<br>    <img src="/2018/09/02/GolangBasis-day01/1.png"></p><h3 id="3、go常用命令介绍"><a href="#3、go常用命令介绍" class="headerlink" title="3、go常用命令介绍"></a>3、go常用命令介绍</h3><p>go run 路径需要完整的路径到src<br>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run src/day_01/hello_world.go</p><p>hello world</p><p>wangqiandeMacBook-Pro:Golang_Study wangqian$ go run day_01/hello_world.go</p><p>stat day_01/hello_world.go: no such file or directory</p><p>go build 编译的时候制定固定的包就行了，不需要带上src<br>go build day_01  go build 是在当前文件路径生成可执行文件，<br>go build -o bin/hello2 day_01  指定在bin路径下生成名称hello2的可执行文件</p><p>go install day_01  生成可执行文件在bin目录下<br>前提是go环境bin路径修改过 GOBIN=”/Users/wangqian/Desktop/Golang_Study/bin”</p><p>go fmt day_01  格式化代码  直接包名路径就行</p><p>在VSCode中目录结构如下图所示：</p><img src="/2018/09/02/GolangBasis-day01/2.png"><h3 id="4、设置GOPATH环境变量"><a href="#4、设置GOPATH环境变量" class="headerlink" title="4、设置GOPATH环境变量"></a>4、设置GOPATH环境变量</h3><p>开始写 go 项目代码之前，需要我们先配置好环境变量。编辑 ~/.bash_profile（在终端中运行 vi ~/.bash_profile 即可）来添加下面这行代码（如果你找不到 .bash_profile，那自己创建一个就可以了）</p><pre><code>export GOPATH=$HOME/go</code></pre><p>保存然后退出你的编辑器。然后在终端中运行下面命令</p><pre><code>source ~/.bash_profile</code></pre><p>提示：$HOME是每个电脑下的用户主目录，每个电脑可能不同，可以在终端运行 echo $HOME 获取<br>GOROOT 默认是在 /usr/local/go，如果没有，可以在 bash_profile 文件中设置。<br>export GOROOT=/usr/local/go<br>然后保存并退出编辑器，运行 source ~/.bash_profile 命令即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1、下载&quot;&gt;&lt;a href=&quot;#1、下载&quot; class=&quot;headerlink&quot; title=&quot;1、下载&quot;&gt;&lt;/a&gt;1、下载&lt;/h3&gt;&lt;p&gt;1、国内镜像下载地址：&lt;a href=&quot;https://golang.google.cn/dl/&quot; target=&quot;_bla
       
     
     </summary>
