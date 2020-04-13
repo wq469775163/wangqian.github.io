@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="iOS开发技巧,">
 
 
 
@@ -81,17 +81,20 @@
 
 
 
-<meta name="description" content="objc使用什么机制管理对象内存？通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。 ARC通过什么方式帮助开发者管理内存？ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期">
+<meta name="description" content="在block内如何修改block外部变量？1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。 2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。 3、这里的a已经由基本数据类型，变成了对">
+<meta name="keywords" content="iOS开发技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="autoreleasepool">
-<meta property="og:url" content="https://www.wangqian.ltd/2020/04/08/autoreleasepool/index.html">
+<meta property="og:title" content="在block内如何修改block外部变量？">
+<meta property="og:url" content="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/index.html">
 <meta property="og:site_name" content="wq&#39;s blogs">
-<meta property="og:description" content="objc使用什么机制管理对象内存？通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。 ARC通过什么方式帮助开发者管理内存？ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期">
+<meta property="og:description" content="在block内如何修改block外部变量？1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。 2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。 3、这里的a已经由基本数据类型，变成了对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-08T06:35:36.413Z">
+<meta property="og:image" content="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/1.png">
+<meta property="og:updated_time" content="2020-04-13T08:49:24.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="autoreleasepool">
-<meta name="twitter:description" content="objc使用什么机制管理对象内存？通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。 ARC通过什么方式帮助开发者管理内存？ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期">
+<meta name="twitter:title" content="在block内如何修改block外部变量？">
+<meta name="twitter:description" content="在block内如何修改block外部变量？1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。 2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。 3、这里的a已经由基本数据类型，变成了对">
+<meta name="twitter:image" content="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/1.png">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://www.wangqian.ltd/2020/04/08/autoreleasepool/">
+  <link rel="canonical" href="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/">
 
 
 
 
 
-  <title>autoreleasepool | wq's blogs</title>
+  <title>在block内如何修改block外部变量？ | wq's blogs</title>
   
 
 
@@ -254,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/04/08/autoreleasepool/">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王乾">
@@ -271,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">autoreleasepool</h1>
+          <h1 class="post-title" itemprop="name headline">在block内如何修改block外部变量？</h1>
         
 
         <div class="post-meta">
@@ -283,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T14:29:17+08:00">
-                2020-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:36:59+08:00">
+                2020-04-13
               </time>
             
 
@@ -343,28 +346,66 @@
       
 
       
-        <h3 id="objc使用什么机制管理对象内存？"><a href="#objc使用什么机制管理对象内存？" class="headerlink" title="objc使用什么机制管理对象内存？"></a>objc使用什么机制管理对象内存？</h3><p>通过 retainCount 的机制来决定对象是否需要释放。 每次 runloop 的时候，都会检查对象的 retainCount，如果retainCount 为 0，说明该对象没有地方需要继续使用了，可以释放掉了。</p>
-<h3 id="ARC通过什么方式帮助开发者管理内存？"><a href="#ARC通过什么方式帮助开发者管理内存？" class="headerlink" title="ARC通过什么方式帮助开发者管理内存？"></a>ARC通过什么方式帮助开发者管理内存？</h3><p>ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期和运行期两部分共同帮助开发者管理内存。<br> 在编译期，ARC用的是更底层的C接口实现的retain/release/autorelease，这样做性能更好，也是为什么不能在ARC环境下手动retain/release/autorelease，同时对同一上下文的同一对象的成对retain/release操作进行优化（即忽略掉不必要的操作）；ARC也包含运行期组件，这个地方做的优化比较复杂，但也不能被忽略。</p>
+        <h3 id="在block内如何修改block外部变量？"><a href="#在block内如何修改block外部变量？" class="headerlink" title="在block内如何修改block外部变量？"></a>在block内如何修改block外部变量？</h3><p>1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。</p>
+<p>2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。</p>
+<p>3、这里的a已经由基本数据类型，变成了对象类型。block会对对象类型的指针进行copy，copy到堆中，但并不会改变该指针所指向的堆中的地址</p>
+<pre><code>__block int a = 5;
+NSLog(@&quot;定义前：%p&quot;,&amp;a); // 1、栈中
+void (^foo)(void) = ^{
+    a = 6;
+    NSLog(@&quot;block内部：%p&quot;,&amp;a); //3、堆中
+};
+NSLog(@&quot;定义后：%p&quot;,&amp;a);//2、堆中
+foo();
+
+定义前：0x16fda86f8
+定义后：0x155b22fc8
+block内部： 0x155b22fc8
+
+
+NSMutableString *a = [NSMutableString stringWithString:@&quot;Tom&quot;];
+NSLog(@&quot;\n 定以前：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);
+void (^foo)(void) = ^{
+    a.string = @&quot;Jerry&quot;;
+    NSLog(@&quot;\n block内部：------------------------------------\n\
+     a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);
+//        a = [NSMutableString stringWithString:@&quot;William&quot;];
+};
+foo();
+NSLog(@&quot;\n 定以后：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);</code></pre><img src="/2020/04/13/oc-develop-blockOutside/1.png">
 <a id="more"></a>
 
-<h3 id="一个autorealese对象在什么时刻释放？"><a href="#一个autorealese对象在什么时刻释放？" class="headerlink" title="一个autorealese对象在什么时刻释放？"></a>一个autorealese对象在什么时刻释放？</h3><p>1、AutoRelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前runloop迭代结束时释放。本质上说本次runloop迭代结束时清理到本次迭代期间内被放到autorelease pool中的对象。</p>
-<p> 2、一个autorealese对象在什么时刻释放?分两种情况：手动干预释放时机–指定autoreleasepool 就是所谓的：当前作用域大括号结束时释放。系统自动去释放。</p>
-<p> 3、创建自动释放池的时机？运行循环检测到事件并启动后，就会创建自动释放池。</p>
-<p>  4、子线程默认是没有Runloop的，编程人员在调用 [NSRunLoop CurrentRunLoop] 时，是以懒加载的形式自动创建 RunLoop 的，而没法手动创建。</p>
-<p>5、arc下使用@autoreleasepool{} 的意义？</p>
-<pre><code> // 其中如果字符串的数量少于10个，字符串会存放到常量区，所以无论你for多少次，少于10个字符串的对象在内存只生成一次。
- //反之，字符串的数量大于或等于10个的时候，就会在堆区生成1024*1024*30个内存对象。
+<h3 id="使用系统的某些block-api（如UIView的block版本写动画时），是否也考虑引用循环问题？"><a href="#使用系统的某些block-api（如UIView的block版本写动画时），是否也考虑引用循环问题？" class="headerlink" title="使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？"></a>使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？</h3><p>1、统的某些block api中，UIView的block版本写动画时不需要考虑，所谓“引用循环”是指双向的强引用，所以那些“单向的强引用”（block 强引用 self ）没有问题，比如这些：</p>
+<pre><code>[UIView animateWithDuration:duration animations:^{ [self.superview layoutIfNeeded]; }];
 
-for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
-    // 产生大量临时变量时，避免内存使用峰值过高，及时释放内存。
-    NSString * str = [NSString stringWithFormat:@&quot;0123456789&quot;];
-}
+[[NSOperationQueue mainQueue] addOperationWithBlock:^{ self.someProperty = xyz; }]; 
 
-for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
-    @autoreleasepool {
-        NSString * str = [NSString stringWithFormat:@&quot;0123456789&quot;];
-    }
-}</code></pre>
+[[NSNotificationCenter defaultCenter] addObserverForName:@&quot;someNotification&quot; 
+                                             object:nil 
+                      queue:[NSOperationQueue mainQueue]
+                                         usingBlock:^(NSNotification * notification) {
+                                               self.someProperty = xyz; }]; </code></pre><p>这些情况不需要考虑“引用循环”。</p>
+<p>但如果你使用一些参数中可能含有 ivar 的系统 api ，如 GCD 、NSNotificationCenter就要小心一点：比如GCD 内部如果引用了 self，而且 GCD 的其他参数是 ivar，则要考虑到循环引用：</p>
+<pre><code>__weak __typeof__(self) weakSelf = self;
+dispatch_group_async(_operationsGroup, _operationsQueue, ^
+{
+__typeof__(self) strongSelf = weakSelf;
+[strongSelf doSomething];
+[strongSelf doSomethingElse];
+} );    
+
+ __weak __typeof__(self) weakSelf = self;
+ _observer = [[NSNotificationCenter defaultCenter]     addObserverForName:@&quot;testKey&quot;
+                                                                   object:nil
+                                                                queue:nil
+                                                           usingBlock:^(NSNotification *note) {
+ __typeof__(self) strongSelf = weakSelf;
+ [strongSelf         dismissModalViewControllerAnimated:YES];</code></pre><p> }];</p>
+<p> self –&gt; _observer –&gt; block –&gt; self 显然这也是一个循环引用。</p>
+<p>检测代码中是否存在循环引用问题，可使用 Facebook 开源的一个检测工具 FBRetainCycleDetector 。</p>
+
       
     </div>
     
@@ -379,6 +420,12 @@ for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS开发技巧/" rel="tag"># iOS开发技巧</a>
+          
+        </div>
+      
 
       
       
@@ -388,8 +435,8 @@ for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/03/oc-develop-store/" rel="next" title="iOS中常用的几种_持久化存储方式">
-                <i class="fa fa-chevron-left"></i> iOS中常用的几种_持久化存储方式
+              <a href="/2020/04/08/autoreleasepool/" rel="next" title="autoreleasepool">
+                <i class="fa fa-chevron-left"></i> autoreleasepool
               </a>
             
           </div>
@@ -397,10 +444,6 @@ for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/oc-develop-blockOutside/" rel="prev" title="在block内如何修改block外部变量？">
-                在block内如何修改block外部变量？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +600,7 @@ for (int index = 0; index &lt; 30 * 1024 * 1024; index ++) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#objc使用什么机制管理对象内存？"><span class="nav-number">1.</span> <span class="nav-text">objc使用什么机制管理对象内存？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC通过什么方式帮助开发者管理内存？"><span class="nav-number">2.</span> <span class="nav-text">ARC通过什么方式帮助开发者管理内存？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个autorealese对象在什么时刻释放？"><span class="nav-number">3.</span> <span class="nav-text">一个autorealese对象在什么时刻释放？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在block内如何修改block外部变量？"><span class="nav-number">1.</span> <span class="nav-text">在block内如何修改block外部变量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用系统的某些block-api（如UIView的block版本写动画时），是否也考虑引用循环问题？"><span class="nav-number">2.</span> <span class="nav-text">使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？</span></a></li></ol></div>
             
 
           </div>

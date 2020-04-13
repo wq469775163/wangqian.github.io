@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.wangqian.ltd/"/>
-  <updated>2020-04-08T06:35:36.413Z</updated>
+  <updated>2020-04-13T08:49:24.699Z</updated>
   <id>https://www.wangqian.ltd/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在block内如何修改block外部变量？</title>
+    <link href="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/"/>
+    <id>https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/</id>
+    <published>2020-04-13T08:36:59.000Z</published>
+    <updated>2020-04-13T08:49:24.699Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="在block内如何修改block外部变量？"><a href="#在block内如何修改block外部变量？" class="headerlink" title="在block内如何修改block外部变量？"></a>在block内如何修改block外部变量？</h3><p>1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。</p><p>2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。</p><p>3、这里的a已经由基本数据类型，变成了对象类型。block会对对象类型的指针进行copy，copy到堆中，但并不会改变该指针所指向的堆中的地址</p><pre><code>__block int a = 5;NSLog(@&quot;定义前：%p&quot;,&amp;a); // 1、栈中void (^foo)(void) = ^{    a = 6;    NSLog(@&quot;block内部：%p&quot;,&amp;a); //3、堆中};NSLog(@&quot;定义后：%p&quot;,&amp;a);//2、堆中foo();定义前：0x16fda86f8定义后：0x155b22fc8block内部： 0x155b22fc8NSMutableString *a = [NSMutableString stringWithString:@&quot;Tom&quot;];NSLog(@&quot;\n 定以前：------------------------------------\n\      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);void (^foo)(void) = ^{    a.string = @&quot;Jerry&quot;;    NSLog(@&quot;\n block内部：------------------------------------\n\     a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);//        a = [NSMutableString stringWithString:@&quot;William&quot;];};foo();NSLog(@&quot;\n 定以后：------------------------------------\n\      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);</code></pre><img src="/2020/04/13/oc-develop-blockOutside/1.png"><a id="more"></a><h3 id="使用系统的某些block-api（如UIView的block版本写动画时），是否也考虑引用循环问题？"><a href="#使用系统的某些block-api（如UIView的block版本写动画时），是否也考虑引用循环问题？" class="headerlink" title="使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？"></a>使用系统的某些block api（如UIView的block版本写动画时），是否也考虑引用循环问题？</h3><p>1、统的某些block api中，UIView的block版本写动画时不需要考虑，所谓“引用循环”是指双向的强引用，所以那些“单向的强引用”（block 强引用 self ）没有问题，比如这些：</p><pre><code>[UIView animateWithDuration:duration animations:^{ [self.superview layoutIfNeeded]; }];[[NSOperationQueue mainQueue] addOperationWithBlock:^{ self.someProperty = xyz; }]; [[NSNotificationCenter defaultCenter] addObserverForName:@&quot;someNotification&quot;                                              object:nil                       queue:[NSOperationQueue mainQueue]                                         usingBlock:^(NSNotification * notification) {                                               self.someProperty = xyz; }]; </code></pre><p>这些情况不需要考虑“引用循环”。</p><p>但如果你使用一些参数中可能含有 ivar 的系统 api ，如 GCD 、NSNotificationCenter就要小心一点：比如GCD 内部如果引用了 self，而且 GCD 的其他参数是 ivar，则要考虑到循环引用：</p><pre><code>__weak __typeof__(self) weakSelf = self;dispatch_group_async(_operationsGroup, _operationsQueue, ^{__typeof__(self) strongSelf = weakSelf;[strongSelf doSomething];[strongSelf doSomethingElse];} );     __weak __typeof__(self) weakSelf = self; _observer = [[NSNotificationCenter defaultCenter]     addObserverForName:@&quot;testKey&quot;                                                                   object:nil                                                                queue:nil                                                           usingBlock:^(NSNotification *note) { __typeof__(self) strongSelf = weakSelf; [strongSelf         dismissModalViewControllerAnimated:YES];</code></pre><p> }];</p><p> self –&gt; _observer –&gt; block –&gt; self 显然这也是一个循环引用。</p><p>检测代码中是否存在循环引用问题，可使用 Facebook 开源的一个检测工具 FBRetainCycleDetector 。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;在block内如何修改block外部变量？&quot;&gt;&lt;a href=&quot;#在block内如何修改block外部变量？&quot; class=&quot;headerlink&quot; title=&quot;在block内如何修改block外部变量？&quot;&gt;&lt;/a&gt;在block内如何修改block外部变量？&lt;/h3&gt;&lt;p&gt;1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。&lt;/p&gt;
+&lt;p&gt;2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。&lt;/p&gt;
+&lt;p&gt;3、这里的a已经由基本数据类型，变成了对象类型。block会对对象类型的指针进行copy，copy到堆中，但并不会改变该指针所指向的堆中的地址&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;__block int a = 5;
+NSLog(@&amp;quot;定义前：%p&amp;quot;,&amp;amp;a); // 1、栈中
+void (^foo)(void) = ^{
+    a = 6;
+    NSLog(@&amp;quot;block内部：%p&amp;quot;,&amp;amp;a); //3、堆中
+};
+NSLog(@&amp;quot;定义后：%p&amp;quot;,&amp;amp;a);//2、堆中
+foo();
+
+定义前：0x16fda86f8
+定义后：0x155b22fc8
+block内部： 0x155b22fc8
+
+
+NSMutableString *a = [NSMutableString stringWithString:@&amp;quot;Tom&amp;quot;];
+NSLog(@&amp;quot;\n 定以前：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&amp;quot;, a, &amp;amp;a);
+void (^foo)(void) = ^{
+    a.string = @&amp;quot;Jerry&amp;quot;;
+    NSLog(@&amp;quot;\n block内部：------------------------------------\n\
+     a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&amp;quot;, a, &amp;amp;a);
+//        a = [NSMutableString stringWithString:@&amp;quot;William&amp;quot;];
+};
+foo();
+NSLog(@&amp;quot;\n 定以后：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&amp;quot;, a, &amp;amp;a);&lt;/code&gt;&lt;/pre&gt;&lt;img src=&quot;/2020/04/13/oc-develop-blockOutside/1.png&quot;&gt;
+    
+    </summary>
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>autoreleasepool</title>
@@ -168,7 +218,7 @@ return self;
     <link href="https://www.wangqian.ltd/2020/03/19/oc-develop-objcmemory/"/>
     <id>https://www.wangqian.ltd/2020/03/19/oc-develop-objcmemory/</id>
     <published>2020-03-19T08:55:48.000Z</published>
-    <updated>2020-03-19T09:32:15.338Z</updated>
+    <updated>2020-04-13T08:38:21.661Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一个objc对象如何进行内存布局？（考虑有父类的情况）"><a href="#一个objc对象如何进行内存布局？（考虑有父类的情况）" class="headerlink" title="一个objc对象如何进行内存布局？（考虑有父类的情况）"></a>一个objc对象如何进行内存布局？（考虑有父类的情况）</h3><p>所有的父类的成员变量和自己的成员变量都在该对象所对应的存储空间中。</p><p>每一个对象内部都有一个isa指针指向类对象，类对象存放本对象的以下内容</p><ol><li>对象方法列表</li><li>成员变量列表</li><li>属性列表</li><li>每个类对象内部也有一个isa指针指向元对象（meta class），元对象内部存放 类方法列表</li><li>superclass指针，指向对象的父类对象。<a id="more"></a></li></ol><p>根对象就是NSObject，它的superclass指针指向nil。</p><p>根元类的isa指针指向它自己，superclass指针指向NSObject。</p><img src="/2020/03/19/oc-develop-objcmemory/1.png"><h3 id="一个objc对象的isa的指针指向什么？有什么作用？"><a href="#一个objc对象的isa的指针指向什么？有什么作用？" class="headerlink" title="一个objc对象的isa的指针指向什么？有什么作用？"></a>一个objc对象的isa的指针指向什么？有什么作用？</h3><p>指向他的类对象,从而可以找到对象上的方法</p>]]></content>
     
@@ -187,6 +237,8 @@ return self;
     
       <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/categories/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
     
+    
+      <category term="iOS开发技巧" scheme="https://www.wangqian.ltd/tags/iOS%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
@@ -531,33 +583,6 @@ fmt.Printf(&amp;quot;value address: %s\n&amp;quot;, value)&lt;/code&gt;&lt;/pre&
         &lt;p&gt;我们接下来一个一个来看关于Go语言中的三个目录的详细解释&lt;br&gt;先通过go env查看go的环境变量(我这里是mac的环境，所以可能和你的不同)&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;wangqiandeMacBook-Pro:~ wangqian$ go env
 GOARCH=&amp;
-      
-    
-    </summary>
-    
-      <category term="Golang基础" scheme="https://www.wangqian.ltd/categories/Golang%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="Golang基础" scheme="https://www.wangqian.ltd/tags/Golang%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac下配置.bash_profile（环境变量）</title>
-    <link href="https://www.wangqian.ltd/2018/09/10/Config-bash-profile/"/>
-    <id>https://www.wangqian.ltd/2018/09/10/Config-bash-profile/</id>
-    <published>2018-09-10T06:54:20.000Z</published>
-    <updated>2019-09-12T07:01:27.411Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。</p><p>1、在命令行中输入：</p><pre><code>export PATH=/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin</code></pre><p>这样可以保证命令行命令暂时可以使用。命令执行完之后先不要关闭终端。<br>如果你的命令行命令可以使用，请直接跳到第2步。</p><p>2、进入当前用户的home目录：</p><pre><code>cd ~/</code></pre><p>3、创建.bash_profile文件：</p><pre><code>touch .bash_profile</code></pre><p>4、 打开.bash_profile并编辑：</p><pre><code>open .bash_profile</code></pre><p>5、这样就打开了一个记事本，会显示你之前配置过的path，修改记事本，强烈建议先备份下，然后根据自己需要配置。</p><pre><code>JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/HomePATH=$JAVA_HOME/bin:$PATH:.CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.export JAVA_HOMEexport PATHexport CLASSPATHexport GOPATH=/Users/wangqian/Desktop/Golang_Studyexport GOROOT=/usr/local/goexport GOBIN=$GOPATH/binexport PATH=$PATH:$GOBIN</code></pre><p>上面是我配置的Java环境和golang环境</p><p>6、command+s保存关闭文件</p><p>7、使修改后的配置生效命令：</p><pre><code>source .bash_profile</code></pre><p>8、验证环境变量是否配置成功</p><p>如果是java,在终端输入以下命令</p><pre><code>java -version</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近开始学习Golang,在调试程序时报错，然后为了解决错误不小心改了.bash_profile这个文件，也就是配置环境变量，结果导致终端很多基本命令都不能使用，在网上找到一些解决办法，亲测有效。&lt;/p&gt;
-&lt;p&gt;1、在命令行中输入：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;expor
       
     
     </summary>

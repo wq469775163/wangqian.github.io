@@ -254,6 +254,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/04/13/oc-develop-blockOutside/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王乾">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wq's blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/13/oc-develop-blockOutside/" itemprop="url">在block内如何修改block外部变量？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:36:59+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="在block内如何修改block外部变量？"><a href="#在block内如何修改block外部变量？" class="headerlink" title="在block内如何修改block外部变量？"></a>在block内如何修改block外部变量？</h3><p>1、Block中不允许修改外部变量的值。这里所说的外部变量的值，指的是栈中指针的内存地址。__block修饰之后，立马将“外部变量在栈中的内存地址放到堆中”，如果不做特殊修改就一直在堆中，进而做到在block内部修改外部变量。</p>
+<p>2、大小比较：堆地址要小于栈地址。iOS中一个进程的栈区内存只有1M，Mac也只有8M。</p>
+<p>3、这里的a已经由基本数据类型，变成了对象类型。block会对对象类型的指针进行copy，copy到堆中，但并不会改变该指针所指向的堆中的地址</p>
+<pre><code>__block int a = 5;
+NSLog(@&quot;定义前：%p&quot;,&amp;a); // 1、栈中
+void (^foo)(void) = ^{
+    a = 6;
+    NSLog(@&quot;block内部：%p&quot;,&amp;a); //3、堆中
+};
+NSLog(@&quot;定义后：%p&quot;,&amp;a);//2、堆中
+foo();
+
+定义前：0x16fda86f8
+定义后：0x155b22fc8
+block内部： 0x155b22fc8
+
+
+NSMutableString *a = [NSMutableString stringWithString:@&quot;Tom&quot;];
+NSLog(@&quot;\n 定以前：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);
+void (^foo)(void) = ^{
+    a.string = @&quot;Jerry&quot;;
+    NSLog(@&quot;\n block内部：------------------------------------\n\
+     a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);
+//        a = [NSMutableString stringWithString:@&quot;William&quot;];
+};
+foo();
+NSLog(@&quot;\n 定以后：------------------------------------\n\
+      a指向的堆中内存对象的地址：%p；a在栈中的指针地址：%p&quot;, a, &amp;a);</code></pre><img src="/2020/04/13/oc-develop-blockOutside/1.png">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/13/oc-develop-blockOutside/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2020/04/08/autoreleasepool/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1612,169 +1786,6 @@ return self;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.wangqian.ltd/2019/12/16/oc-develop-nscopying/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王乾">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/yingmuhuadao.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wq's blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/16/oc-develop-nscopying/" itemprop="url">如何让自己的类用 copy 修饰符？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T15:01:20+08:00">
-                2019-12-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS开发技巧/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发技巧</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="如何让自己的类用-copy-修饰符？"><a href="#如何让自己的类用-copy-修饰符？" class="headerlink" title="如何让自己的类用 copy 修饰符？"></a>如何让自己的类用 copy 修饰符？</h3><pre><code> NSArray *tempArray = @[@&quot;1&quot;,@&quot;2&quot;];
-NSMutableArray *mutableCopyMuArray = [tempArray mutableCopy];
-
-// tempArray==0x600002649ce  mutableCopyMuArray==0x600002649ce0
-// 深copy tempArray 和 mutableCopyMuArray是完全不同的变量
-NSLog(@&quot;tempArray==%p,mutableCopyMuArray==%p&quot;,tempArray,mutableCopyMuArray);
-
-
- WQUser *user = [[WQUser alloc] initWithName:@&quot;lbj&quot; age:35];
-/*
- WQUser自己新建的类不具备copy功能，程序会crash
- 声明NSCopying并且实现协议方法后，新建的类会具备copy功能
- user==0x600002f7b400,copyUser==0x600002f7b3e0，copy出来完全不同的变量
- */
-
-WQUser *copyUser = [user copy];
-
-NSLog(@&quot;user==%p,copyUser==%p&quot;,user,copyUser);</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/16/oc-develop-nscopying/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1827,7 +1838,7 @@ NSLog(@&quot;user==%p,copyUser==%p&quot;,user,copyUser);</code></pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
